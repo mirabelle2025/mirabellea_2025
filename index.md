@@ -1,12 +1,8 @@
 ---
 layout: base
-title: Student Home 
-description: Home Page
-hide: true
----
-
-My journey starts here. Mirabelle Anderson
-
+title: Course Descriptions
+description: An overview of Computer Science pathway at Del Norte High School
+author: Mirabelle Anderson
 image: /images/mario_animation.png
 hide: true
 ---
@@ -14,7 +10,6 @@ hide: true
 <!-- Liquid:  statements -->
 
 <!-- Include submenu from _includes to top of pages -->
-{% include nav/home.html %}
 <!--- Concatenation of site URL to frontmatter image  --->
 {% assign sprite_file = site.baseurl | append: page.image %}
 <!--- Has is a list variable containing mario metadata for sprite --->
@@ -193,4 +188,36 @@ hide: true
     mario.startResting();
   });
 
-</script>
+<style>
+    .grid-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+    .grid-item {
+        text-align: center;
+    }
+    .grid-item img {
+        width: 100%;
+        height: auto;
+    }
+</style>
+
+<div class="grid-container">
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg" alt="California Flag">
+        <p>California - forever</p>
+    </div>
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Oregon.svg" alt="Oregon Flag">
+        <p>Oregon - 9 years</p>
+    </div>
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/en/b/be/Flag_of_England.svg" alt="England Flag">
+        <p>England - 2 years</p>
+    </div>
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/e/ef/Flag_of_Hawaii.svg" alt="Hawaii Flag">
+        <p>Hawaii - 2 years</p>
+    </div>
+</div>
