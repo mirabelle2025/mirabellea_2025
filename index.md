@@ -20,6 +20,6 @@
         <p>California - forever</p>
     <div class="grid-item">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg" alt="Republic of China Flag">
-        <p>Republic of China - nationality</p>
+        <p>Taiwan - nationality</p>
     </div>
 </div>
