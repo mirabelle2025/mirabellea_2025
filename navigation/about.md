@@ -3,6 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
+I am 16 years old. I play competitive soccer, flag football, and volleyball. I love to go to the beach with family and friends. I love snowboarding, especially with my dad. 
 
 <style>
     .grid-container {
