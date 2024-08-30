@@ -19,7 +19,7 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg" alt="California Flag">
         <p>California - forever</p>
     <div class="grid-item">
-        <img src="https://en.wikipedia.org/wiki/Flag_of_the_Republic_of_China#/media/File:Flag_of_the_Republic_of_China.svg" alt="Republic of China Flag">
-        <p>Republic of China - 2 years</p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_the_Republic_of_China.svg" alt="Republic of China Flag">
+        <p>Republic of China - nationality</p>
     </div>
 </div>
