@@ -22,4 +22,8 @@
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg" alt="Taiwan Flag">
         <p>Taiwan - Nationality</p>
     </div>
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Flag_of_Missouri.svg" alt="Missouri Flag">
+        <p>Missouri - Birthplace</p>
+    </div>
 </div>
