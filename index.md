@@ -190,3 +190,15 @@ hide: true
   });
 
 </script>
+
+* The list definition, as is, is using space to separate lines. Thus the use of commas and hyphens in output.
+   * ls: list directory
+   * cd: change directory
+   * pwd: present working directory
+   * if then fi: test condition
+   * env: bash environment variables
+   * cat: view file contents
+   * tee: write to output
+   * echo: display content of string
+   * echo "sample text" >$file: write content to file
+   * echo "sample text" >>$file: append content to file
