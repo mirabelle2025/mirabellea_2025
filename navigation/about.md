@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
-I am 16 years old. I play competitive soccer, flag football, and volleyball. I love to go to the beach with family and friends. I love snowboarding, especially with my dad. 
+I am 16 years old. I play competitive soccer, flag football, and volleyball. I love to go to the beach with family and friends. I also love snowboarding, especially with my dad. 
 
 <style>
     .grid-container {
@@ -27,6 +27,10 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
     <div class="grid-item">
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Flag_of_the_Republic_of_China.svg" alt="Taiwan Flag">
         <p>Taiwan - Nationality</p>
+    </div>
+    <div class="grid-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Flag_of_Missouri.svg" alt="Missouri Flag">
+        <p>Missouri - Birthplace</p>
     </div>
     <div class="grid-item">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Flag_of_Missouri.svg" alt="Missouri Flag">
