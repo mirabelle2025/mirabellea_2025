@@ -33,7 +33,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
         <p>Missouri - Birthplace</p>
     </div>
     <div class="grid-item">
-        <img src="![alt text](image.png)" alt="Soccer Team Photo">
+        <img src="![Soccer Team Photo](image.png)" alt="Soccer Team Photo">
         <p>Soccer Team - I love playing soccer with my teammates</p>
     </div>
 </div>
