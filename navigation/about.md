@@ -39,7 +39,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
     var living_in_the_world = [
         {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
         {"flag": "5/5a/Flag_of_Missouri.svg", "greeting": "Hello", "description": "Missouri - Birthplace"},
-        {"flag": "b/be/Flag_of_England.svg", "greeting": "Alright mate", "description": "England - 2 years"},
+        {"flag": "7/72/Flag_of_the_Republic_of_China.svg", "greeting": "你好", "description": "Taiwan - Nationality"},
         {"flag": "e/ef/Flag_of_Hawaii.svg", "greeting": "Aloha", "description": "Hawaii - 2 years"},
     ]; 
     
