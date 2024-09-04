@@ -32,8 +32,4 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Flag_of_Missouri.svg" alt="Missouri Flag">
         <p>Missouri - Birthplace</p>
     </div>
-    <div class="grid-item">
-        <img src="![Soccer Team Photo](image.png)" alt="Soccer Team Photo">
-        <p>Soccer Team - I love playing soccer with my teammates</p>
-    </div>
 </div>
