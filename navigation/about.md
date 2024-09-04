@@ -9,7 +9,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
     /* Style looks pretty compact, trace grid-container and grid-item in the code */
     .grid-container {
         display: grid;
-        grid-template-rows: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamic rows */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Dynamic columns */
         gap: 10px;
     }
     .grid-item {
