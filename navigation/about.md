@@ -17,7 +17,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
     .grid-item img {
         width: 100%;
         height: auto;
-    }  
+    }
 </style>
 
 <div class="grid-container">
