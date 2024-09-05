@@ -74,4 +74,4 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     }
 </script>
 
-![HTML, CSS, and JavaScript](https://upload.wikimedia.org/wikipedia/commons/6/61/HTML5_logo_and_wordmark.svg)
+![HTML, CSS, and JavaScript](https://drive.google.com/file/d/1mJmlzadNWdkBijs59xsYo94glw31vaTk/view?usp=sharing)
