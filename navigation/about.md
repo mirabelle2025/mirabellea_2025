@@ -5,12 +5,6 @@ permalink: /about/
 ---
 I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volleyball 🏐. I love to go to the beach with family 👨‍👩‍👧‍👦 and friends 🤝. I also love snowboarding 🏂, especially with my dad. I love sunsets and nature.
 
-![Sunset](image-4.png)
-
-![Nature](image-5.png)
-
-![Nature](IMG_4619.jpg)
-
 <style>
     /* Style looks pretty compact, trace grid-container and grid-item in the code */
     .grid-container {
@@ -80,4 +74,4 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     }
 </script>
 
-![Soccer Team Photo](image-3.png)
+![alt text](image-6.png)
