@@ -40,7 +40,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
         {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
         {"flag": "5/5a/Flag_of_Missouri.svg", "greeting": "Hello", "description": "Missouri - Birthplace"},
         {"flag": "7/72/Flag_of_the_Republic_of_China.svg", "greeting": "你好", "description": "Taiwanese - Ethnicity"},
-        {"flag": "a/a9/Flag_of_the_United_States.svg", "greeting": "Hi", "description": "American - Nationality"},
+        {"flag": "a/a4/Flag_of_the_United_States.svg", "greeting": "Hi", "description": "American - Nationality"},
     ]; 
     
     // 3a. Consider how to update style count for size of container
