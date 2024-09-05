@@ -37,7 +37,7 @@ I am 16 years old. I play competitive soccer, flag football, and volleyball. I l
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
     var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
     var living_in_the_world = [
-        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - forever"},
+        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - Home"},
         {"flag": "5/5a/Flag_of_Missouri.svg", "greeting": "Hello", "description": "Missouri - Birthplace"},
         {"flag": "7/72/Flag_of_the_Republic_of_China.svg", "greeting": "你好", "description": "Taiwanese - Ethnicity"},
         {"flag": "a/a4/Flag_of_the_United_States.svg", "greeting": "Hi", "description": "American - Nationality"},
