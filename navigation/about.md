@@ -74,4 +74,4 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     }
 </script>
 
-<img src="/home/mirabelle2025/nighthawk/mirabellea_2025/navigation/image-1.png" alt="Description of your image">
+<img src="/home/mirabelle2025/nighthawk/mirabellea_2025/images/notebooks/about-personal/image-1.png" alt="Description of your image">
