@@ -1,9 +1,13 @@
 ---
 layout: page
-title: About Mirabelle Anderson
+title: About Mirabelle
 permalink: /about/
 ---
 I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volleyball 🏐. I love to go to the beach with family 👨‍👩‍👧‍👦 and friends 🤝. I also love snowboarding 🏂, especially with my dad. I love sunsets and nature.
+
+<comment>
+
+</comment>
 
 <style>
     /* Style looks pretty compact, trace grid-container and grid-item in the code */
@@ -74,4 +78,4 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     }
 </script>
 
-<img src="/home/mirabelle2025/nighthawk/mirabellea_2025/images/notebooks/about-personal/image-1.png" alt="Description of your image">
+<img src="{{site.baseurl}}/images/notebooks/about-personal/image-1.png" alt="Soccer Team">
