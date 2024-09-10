@@ -1,6 +1,18 @@
 //Default Overrides For Styles In Minima 
 // If you wish to override any of this CSS, do so in _sass/minima/custom-styles.css
 
+// Variables
+$primary-font: 'Lobster', cursive;
+$primary-bg-color: #61c0a8;
+$secondary-bg-color: #ffffff;
+$primary-color: white;
+$secondary-color: #cc0000;
+$tertiary-color: #ffd700;
+$th-bg-color: rgb(123, 35, 53);
+$tbody-bg-color: rgb(182, 49, 80);
+$border-color: rgb(123, 35, 53);
+$star-unicode: '\2605';
+
 .post img {
   display: block;
   // border:1px solid #021a40;

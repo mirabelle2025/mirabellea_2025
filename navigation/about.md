@@ -2,12 +2,12 @@
 layout: page
 title: About Mirabelle
 permalink: /about/
+
 ---
-I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volleyball 🏐. I love to go to the beach with family 👨‍👩‍👧‍👦 and friends 🤝. I also love snowboarding 🏂, especially with my dad. I love sunsets and nature.
 
-<comment>
+<h1> My Background </h1>
 
-</comment>
+
 
 <style>
     /* Style looks pretty compact, trace grid-container and grid-item in the code */
@@ -41,10 +41,9 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     // 2. Define a JavaScript object for our http source and our data rows for the Living in the World grid
     var http_source = "https://upload.wikimedia.org/wikipedia/commons/";
     var living_in_the_world = [
-        {"flag": "0/01/Flag_of_California.svg", "greeting": "Hey", "description": "California - Home"},
-        {"flag": "5/5a/Flag_of_Missouri.svg", "greeting": "Hello", "description": "Missouri - Birthplace"},
-        {"flag": "7/72/Flag_of_the_Republic_of_China.svg", "greeting": "你好", "description": "Taiwanese - Ethnicity"},
-        {"flag": "a/a4/Flag_of_the_United_States.svg", "greeting": "Hi", "description": "American - Nationality"},
+        {"flag": "0/01/Flag_of_California.svg", "description": "California - Home (Moved here at 1 yrs old)"},
+        {"flag": "5/5a/Flag_of_Missouri.svg", "description": "Missouri - Birthplace (Dad's side lives in Missouri)"},
+        {"flag": "7/72/Flag_of_the_Republic_of_China.svg", "description": "Taiwanese - Ethnicity (Mom's side lives in Taiwan)"},
     ]; 
     
     // 3a. Consider how to update style count for size of container
@@ -78,4 +77,34 @@ I am 16 years old. I play competitive soccer ⚽, flag football 🏈, and volley
     }
 </script>
 
-<img src="{{site.baseurl}}/images/notebooks/about-personal/image-1.png" alt="Soccer Team">
+<h1> My Interests </h1>
+
+- ⚽ I've played soccer for over 10 years (<a href="https://www.youtube.com/@mirabelle.anderson2025">Here are some highlights!!</a>)
+- 👨‍👩‍👧‍👦 I have an older brother that attends UC Berkeley, and a mom and dad
+- 🐩 I have a maltipoo dog named Powder and shes my bestfriend
+- 🏈, 🏐, 🥎 I have played flag football, volleyball, and softball competitvely
+- ➕ My favorite subject is math
+- 🫡 I am the captain of my club soccer team, high school soccer team, and high school flag football team
+- 🗣️ I am fluent in Madarin
+- 🏂 I have been snowboarding for over 8 years (My dad was going to go pro for snowboarding)
+- 👩‍🔬 I want to study engineering
+
+### Family and Fun
+
+The most important part of my life is my family and friends.
+
+<img src="{{site.baseurl}}/images/notebooks/about-personal/image-1.png" alt="Soccer Team" width="400" height="300"/> 
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image.png" alt="Nature" width="400" height="300"/>
+<comment> -----------------------------------Soccer Team ------------------------------------------------------------------Flag Football Team--------------------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-2.png" alt="Nature" width="400" height="300"/>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-3.png" alt="Nature" width="400" height="300"/>
+<comment> ------------------------------------My Friends-----------------------------------------------------------------------My Brother--------------------------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-8.png" alt="Nature" width="266" height="400"/>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-9.png" alt="Nature" width="266" height="400"/>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-10.png" alt="Nature" width="266" height="400"/>
+<comment> ---------------------------Mom---------------------------------------------------Dad-------------------------------------------------Powder--------------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-4.png" alt="Sunset" width="400" height="300"/>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-5.png" alt="Nature" width="400" height="300"/>
+<comment> ---------------------------Sunsets and Beaches have my 💗-----------------------------------------------Nature brings me peace------------------------------</comment>
+
+<body style="background-color:pink;">
