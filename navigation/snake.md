@@ -7,9 +7,6 @@ permalink: /snake/
 
 {% include nav/home.html %}
 
-Future home of snake page
-
-
 <style>
 
     body{
@@ -23,7 +20,7 @@ Future home of snake page
         display: none;
         border-style: solid;
         border-width: 10px;
-        border-color: #FFFFFF;
+        border-color: #FF1493;
     }
     canvas:focus{
         outline: none;
@@ -274,7 +271,7 @@ Future home of snake page
             }
             // Repaint canvas
             ctx.beginPath();
-            ctx.fillStyle = "royalblue";
+            ctx.fillStyle = "#FFE4E1";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             // Paint snake
             for(let i = 0; i < snake.length; i++){
@@ -333,10 +330,11 @@ Future home of snake page
         }
         /* Dot for Food or Snake part */
         /////////////////////////////////////////////////////////////
-        let activeDot = function(x, y){
-            ctx.fillStyle = "#FFFFFF";
-            ctx.fillRect(x * BLOCK, y * BLOCK, BLOCK, BLOCK);
+        let activeDot = function(x, y) {
+            ctx.font = "20px Arial"; // Set font size and style
+            ctx.fillText("🩷", x * BLOCK, y * BLOCK); // Draw the emoji as food block
         }
+
         /* Random food placement */
         /////////////////////////////////////////////////////////////
         let addFood = function(){
@@ -369,8 +367,8 @@ Future home of snake page
         /////////////////////////////////////////////////////////////
         let setWall = function(wall_value){
             wall = wall_value;
-            if(wall === 0){screen_snake.style.borderColor = "#606060";}
-            if(wall === 1){screen_snake.style.borderColor = "#FFFFFF";}
+            if(wall === 0){screen_snake.style.borderColor = "#3498DB";}
+            if(wall === 1){screen_snake.style.borderColor = "#FFB6C1";}
         }
     })();
 </script>
