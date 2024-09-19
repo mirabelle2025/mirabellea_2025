@@ -18,17 +18,17 @@ body.dark-theme {
 }
 
 body.blue-theme {
-  background-color: #007acc;
+  background-color: #AEC6CF;
   color: white;
 }
 
 body.red-theme {
-  background-color: #ff4c4c;
+  background-color: #FDFD96;
   color: white;
 }
 
 body.green-theme {
-  background-color: #28a745;
+  background-color: #C3B1E1;
   color: white;
 }
 
