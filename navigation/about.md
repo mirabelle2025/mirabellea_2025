@@ -2,6 +2,7 @@
 layout: page
 title: About Mirabelle
 permalink: /about/
+comments: true
 
 ---
 
@@ -109,3 +110,11 @@ The most important part of my life is my family and friends.
 
 <body style="background-color:pink;">
 
+<script src="https://utteranc.es/client.js"
+        repo="mirabelle2025/mirabellea_2025"
+        issue-term="pathname"
+        label="Utterances"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>

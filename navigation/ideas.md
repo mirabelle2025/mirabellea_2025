@@ -7,4 +7,5 @@ permalink: /ideas/
 
 {% include nav/home.html %}
 
-Future home of my great ideas that pop into my head.
+- Add an editable calendar to my nighthawk pages so I can stay organized with all of my activities.
+- Add a usable calculator to help with mathmetatics and solving problems.
