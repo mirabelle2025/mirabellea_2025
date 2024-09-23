@@ -39,6 +39,14 @@ permalink: /calculator/
     <button onclick="calculate()">=</button>
     <button onclick="updateDisplay('+')">+</button>
   </div>
+  
+  <!-- Advanced functions -->
+  <div class="row">
+    <button onclick="log()">log</button>
+    <button onclick="ln()">ln</button>
+    <button onclick="sqrt()">√</button>
+    <button onclick="pow()">x²</button>
+  </div>
 </div>
 
 <style>
@@ -103,5 +111,29 @@ permalink: /calculator/
     } catch (e) {
       document.getElementById('display').value = 'Error';
     }
+  }
+
+  // Logarithm (base 10)
+  function log() {
+    let value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = Math.log10(value);
+  }
+
+  // Natural logarithm
+  function ln() {
+    let value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = Math.log(value);
+  }
+
+  // Square root
+  function sqrt() {
+    let value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = Math.sqrt(value);
+  }
+
+  // Square (x²)
+  function pow() {
+    let value = parseFloat(document.getElementById('display').value);
+    document.getElementById('display').value = Math.pow(value, 2);
   }
 </script>
