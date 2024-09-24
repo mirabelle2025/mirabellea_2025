@@ -8,47 +8,41 @@ hide: true
 
 {% include nav/home.html %}
 
+<button id="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+
+<script>
+  // Function to toggle the theme
+  function toggleTheme() {
+    let body = document.body;
+    let currentTheme = body.dataset.theme;
+    
+    if (currentTheme === "dark") {
+      body.dataset.theme = "light";
+      localStorage.setItem("theme", "light");
+    } else {
+      body.dataset.theme = "dark";
+      localStorage.setItem("theme", "dark");
+    }
+    applyTheme();
+  }
+
+  // Apply the saved theme from localStorage
+  function applyTheme() {
+    let savedTheme = localStorage.getItem("theme") || "light";
+    document.body.dataset.theme = savedTheme;
+  }
+
+  // Run theme initialization on page load
+  document.addEventListener("DOMContentLoaded", applyTheme);
+</script>
+
 <style>
-body.light-theme {
-  background-color: white;
-  color: black;
-}
-
-body.dark-theme {
-  background-color: #333;
-  color: white;
-}
-
-/* Center the canvas and buttons */
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-
-/* Adjust the button-container */
-.button-container {
-  text-align: center;
-}
-
-.button-container button {
-  padding: 10px 20px;
-  margin: 5px;
-  background-color: #FF1493;
-  color: pink;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.button-container button:hover {
-  background-color: #FFC0CB;
-}
-
+  body[data-theme='dark'] {
+    background-color: #2e2e2e;
+    color: #ffffff;
+  }
+  body[data-theme='light'] {
+    background-color: #ffffff;
+    color: #000000;
+  }
 </style>
-
-<div class="container">
-    <button id="theme-btn">Switch Theme</button>
-</div>
