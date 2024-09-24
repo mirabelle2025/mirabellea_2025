@@ -7,6 +7,7 @@ permalink: /snake/
 {% include nav/home.html %}
 
 <style>
+/* Same existing styles */
 body.light-theme {
   background-color: white;
   color: black;
@@ -37,7 +38,6 @@ body.grey-theme {
   color: white;
 }
 
-/* Center the canvas and buttons */
 .container {
   display: flex;
   flex-direction: column;
@@ -49,10 +49,9 @@ body.grey-theme {
 canvas {
   border: 1px solid #000;
   background-color: pink;
-  margin-bottom: 10px; /* Add spacing between canvas and buttons */
+  margin-bottom: 10px;
 }
 
-/* Adjust the button-container */
 .button-container {
   text-align: center;
 }
@@ -90,6 +89,8 @@ canvas {
     <button id="fast-btn">Fast Mode</button>
     <button id="wall-btn">Wall On/Off</button>
     <button id="theme-btn">Switch Theme</button>
+    <!-- New Restart Game button -->
+    <button id="restart-btn">Restart Game</button>
   </div>
 </div>
 
@@ -97,30 +98,27 @@ canvas {
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-// Unit size of the grid
 const box = 20;
+let snake, food, direction, score, speed, wallOn, game;
 
-// Create the snake
-let snake = [];
-snake[0] = { x: 9 * box, y: 10 * box };
+function initGame() {
+  // Reset game variables
+  snake = [{ x: 9 * box, y: 10 * box }];
+  food = {
+    x: Math.floor(Math.random() * 19 + 1) * box,
+    y: Math.floor(Math.random() * 19 + 1) * box
+  };
+  direction = null;
+  score = 0;
+  speed = 100;
+  wallOn = true;
+  document.getElementById("game-over").style.display = "none";
 
-// Create the food
-let food = {
-  x: Math.floor(Math.random() * 19 + 1) * box,
-  y: Math.floor(Math.random() * 19 + 1) * box
-};
+  // Restart game loop
+  if (game) clearInterval(game);
+  game = setInterval(draw, speed);
+}
 
-// Initial snake direction
-let direction;
-
-// Score
-let score = 0;
-
-// Speed variables
-let speed = 100;
-let wallOn = true;
-
-// Control the snake with keyboard
 document.addEventListener("keydown", changeDirection);
 
 function changeDirection(event) {
@@ -144,31 +142,27 @@ function collision(head, array) {
   return false;
 }
 
-// Draw everything on the canvas
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  // Draw snake with emoji
+  // Draw snake
   for (let i = 0; i < snake.length; i++) {
-    ctx.font = "20px Arial"; // Set font size to match the grid
-    ctx.fillText("🩷", snake[i].x, snake[i].y + box); // Adjust the y-offset slightly for better alignment
+    ctx.font = "20px Arial";
+    ctx.fillText("🩷", snake[i].x, snake[i].y + box);
   }
 
   // Draw food
   ctx.fillStyle = "white";
   ctx.fillRect(food.x, food.y, box, box);
 
-  // Old head position
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
 
-  // Move the snake
   if (direction == "LEFT") snakeX -= box;
   if (direction == "UP") snakeY -= box;
   if (direction == "RIGHT") snakeX += box;
   if (direction == "DOWN") snakeY += box;
 
-  // Snake eats the food
   if (snakeX == food.x && snakeY == food.y) {
     score++;
     food = {
@@ -179,72 +173,55 @@ function draw() {
     snake.pop();
   }
 
-  // New head
-  let newHead = {
-    x: snakeX,
-    y: snakeY
-  };
+  let newHead = { x: snakeX, y: snakeY };
 
-  // Game over conditions
   if (wallOn) {
     if (snakeX < 0 || snakeY < 0 || snakeX >= canvas.width || snakeY >= canvas.height || collision(newHead, snake)) {
       document.getElementById("game-over").style.display = "block";
       clearInterval(game);
     }
   } else {
-    // Wrap the snake around the canvas
-    if (snakeX < 0) {
-      snakeX = canvas.width - box;
-    }
-    if (snakeX >= canvas.width) {
-      snakeX = 0;
-    }
-    if (snakeY < 0) {
-      snakeY = canvas.height - box;
-    }
-    if (snakeY >= canvas.height) {
-      snakeY = 0;
-    }
+    if (snakeX < 0) snakeX = canvas.width - box;
+    if (snakeX >= canvas.width) snakeX = 0;
+    if (snakeY < 0) snakeY = canvas.height - box;
+    if (snakeY >= canvas.height) snakeY = 0;
   }
 
   snake.unshift(newHead);
 
-  // Score display
   ctx.fillStyle = "black";
   ctx.font = "20px Arial";
   ctx.fillText("Score: " + score, 10, 30);
 }
 
-// Control speed of the game
-let game = setInterval(draw, speed);
-
-// Button functionality
 document.getElementById("slow-btn").addEventListener("click", function() {
   clearInterval(game);
-  speed = 200; // Slow mode speed
+  speed = 200;
   game = setInterval(draw, speed);
 });
 
 document.getElementById("fast-btn").addEventListener("click", function() {
   clearInterval(game);
-  speed = 50; // Fast mode speed
+  speed = 50;
   game = setInterval(draw, speed);
 });
 
 document.getElementById("wall-btn").addEventListener("click", function() {
-  wallOn = !wallOn; // Toggle wall on/off
+  wallOn = !wallOn;
 });
 
-// Theme switching functionality
 const themes = ['light-theme', 'dark-theme', 'blue-theme', 'red-theme', 'green-theme', 'grey-theme'];
 let currentTheme = 0;
 
 document.getElementById("theme-btn").addEventListener("click", function() {
-  // Remove the current theme class
   document.body.classList.remove(themes[currentTheme]);
-  // Move to the next theme
   currentTheme = (currentTheme + 1) % themes.length;
-  // Apply the new theme
   document.body.classList.add(themes[currentTheme]);
 });
+
+// Restart button functionality
+document.getElementById("restart-btn").addEventListener("click", initGame);
+
+// Start the game for the first time
+initGame();
 </script>
