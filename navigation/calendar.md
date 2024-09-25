@@ -7,7 +7,7 @@ permalink: /calendar/
 
 {% include nav/home.html %}
 
-<div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px;">
+<div style="display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px;">
 
   <!-- First Quadrant (empty or you can add content here) -->
   <div style="border: 1px solid #ccc; padding: 10px;">
