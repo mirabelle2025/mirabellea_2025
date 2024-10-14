@@ -59,9 +59,9 @@ canvas {
 .button-container button {
   padding: 10px 20px;
   margin: 5px;
-  background-color: #FF1493;
+  background-color: #FFC0CB;
   color: pink;
-  border: none;
+  border: pink;
   border-radius: 5px;
   cursor: pointer;
 }
