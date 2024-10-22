@@ -11,3 +11,15 @@
 //@import "minima/minimal-mistakes/__minimal-mistakes"; //Minimal Mistakes theme 
 // Mix Light themes with this if your eyes are bleeding 
 // @import "minima/dracula/dark-mode";
+
+/* Custom CSS to keep pink background and Dracula for code blocks */
+body {
+    background-color: rgb(248, 152, 203) !important;
+}
+
+pre, code {
+    background-color: #282a36 !important;
+    color: #f8f8f2 !important;
+    border-radius: 5px;
+    padding: 10px;
+}
