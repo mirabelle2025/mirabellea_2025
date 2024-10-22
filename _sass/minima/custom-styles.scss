@@ -16,7 +16,9 @@
 body {
     background-color: rgb(248, 152, 203) !important;
 }
-
+header, nav, .site-header {
+    background-color: black !important; /* Or any other color you want for the header */
+}
 pre, code {
     background-color: #282a36 !important;
     color: #f8f8f2 !important;
