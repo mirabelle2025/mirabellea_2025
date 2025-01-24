@@ -94,19 +94,14 @@ comments: true
 
 The most important part of my life is my family and friends.
 
-<img src="{{site.baseurl}}/images/notebooks/about-personal/image-1.png" alt="Soccer Team" width="400" height="300"/> 
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image.png" alt="Nature" width="400" height="300"/>
-<comment> -----------------------------------Soccer Team ------------------------------------------------------------------Flag Football Team--------------------------------</comment>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-2.png" alt="Nature" width="400" height="300"/>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-3.png" alt="Nature" width="400" height="300"/>
-<comment> ------------------------------------My Friends-----------------------------------------------------------------------My Brother--------------------------------------</comment>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-8.png" alt="Nature" width="266" height="400"/>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-9.png" alt="Nature" width="266" height="400"/>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-10.png" alt="Nature" width="266" height="400"/>
-<comment> ---------------------------Mom---------------------------------------------------Dad-------------------------------------------------Powder--------------------------</comment>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-4.png" alt="Sunset" width="400" height="300"/>
-<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-5.png" alt="Nature" width="400" height="300"/>
-<comment> ---------------------------Sunsets and Beaches have my 💗-----------------------------------------------Nature brings me peace------------------------------</comment>
+<img src="{{site.baseurl}}/images/notebooks/about-personal/image-1.png" alt="Soccer Team" width="400" height="300"/> <img src= "{{site.baseurl}}/images/notebooks/about-personal/image.png" alt="Nature" width="400" height="300"/>
+<comment> ----------------------Soccer Team ---------------------------------------------------------------Flag Football Team------------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-2.png" alt="Nature" width="400" height="300"/><img src= "{{site.baseurl}}/images/notebooks/about-personal/image-3.png" alt="Nature" width="400" height="300"/>
+<comment> ------------------------My Friends-----------------------------------------------------------------------My Brother-----------------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-8.png" alt="Nature" width="266" height="400"/><img src= "{{site.baseurl}}/images/notebooks/about-personal/image-9.png" alt="Nature" width="266" height="400"/><img src= "{{site.baseurl}}/images/notebooks/about-personal/image-10.png" alt="Nature" width="266" height="400"/>
+<comment> ------------------Mom---------------------------------------------------Dad-------------------------------------------------Powder------------------</comment>
+<img src= "{{site.baseurl}}/images/notebooks/about-personal/image-4.png" alt="Sunset" width="400" height="300"/><img src= "{{site.baseurl}}/images/notebooks/about-personal/image-5.png" alt="Nature" width="400" height="300"/>
+<comment> -------------------Sunsets and Beaches have my 💗-----------------------------------------------Nature brings me peace------------------------</comment>
 
 <body style="background-color:pink;">
 
