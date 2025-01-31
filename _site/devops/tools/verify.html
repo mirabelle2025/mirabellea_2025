@@ -1,0 +1,1130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Tools Verify using Shell | Nighthawk Pages</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Tools Verify using Shell" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Linux and the shell is used in this example to setup and verify the installation of the tools. Additionally, a few programming exercises are included." />
+<meta property="og:description" content="Linux and the shell is used in this example to setup and verify the installation of the tools. Additionally, a few programming exercises are included." />
+<link rel="canonical" href="http://localhost:4100/mirabellea_2025/devops/tools/verify" />
+<meta property="og:url" content="http://localhost:4100/mirabellea_2025/devops/tools/verify" />
+<meta property="og:site_name" content="Nighthawk Pages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-22T00:00:00-07:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Tools Verify using Shell" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2023-08-22T00:00:00-07:00","datePublished":"2023-08-22T00:00:00-07:00","description":"Linux and the shell is used in this example to setup and verify the installation of the tools. Additionally, a few programming exercises are included.","headline":"Tools Verify using Shell","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/mirabellea_2025/devops/tools/verify"},"url":"http://localhost:4100/mirabellea_2025/devops/tools/verify"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/mirabellea_2025/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/mirabellea_2025/feed.xml" title="Nighthawk Pages" />
+
+<!-- Include favicons --><link rel="shortcut icon" type="image/x-icon" href="/mirabellea_2025/images/favicon.ico"><!-- Include Primer CSS for styling -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Include Hypothesis annotations script if annotations are enabled --><!-- Include KaTeX and MathJax for rendering mathematical expressions if use_math is enabled -->
+
+
+<script>
+/**
+ * Function to wrap images with a figure and caption if they have a title attribute.
+ * This function is executed when the window loads.
+ */
+function wrap_img(fn) {
+    // Check if the document is already loaded
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        // Select all images within elements with the class 'post'
+        var elements = document.querySelectorAll(".post img");
+        // Iterate over each image element
+        Array.prototype.forEach.call(elements, function(el, i) {
+            // Check if the image has a title attribute and is not an emoji
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                // Create a figcaption element for the caption
+                const caption = document.createElement('figcaption');
+                // Create a text node with the title attribute value
+                var node = document.createTextNode(el.getAttribute("title"));
+                // Append the text node to the figcaption element
+                caption.appendChild(node);
+                // Create a figure element to wrap the image and caption
+                const wrapper = document.createElement('figure');
+                // Add the 'image' class to the figure element
+                wrapper.className = 'image';
+                // Insert the figure element before the image
+                el.parentNode.insertBefore(wrapper, el);
+                // Remove the image from its original position
+                el.parentNode.removeChild(el);
+                // Append the image and caption to the figure element
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else {
+        // If the document is not loaded, add an event listener to execute the function when it is
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+// Execute the wrap_img function when the window loads
+window.onload = wrap_img;
+</script>
+
+<script>
+/**
+ * Function to add a link icon to anchor tags with the class 'anchor-link'.
+ * This function is executed when the DOM content is loaded.
+ */
+document.addEventListener("DOMContentLoaded", function(){
+    // Select all elements with the class 'anchor-link'
+    var elem = document.querySelectorAll(".anchor-link");
+    // Iterate over each element and set its inner HTML to a Font Awesome link icon
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+});
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/mirabellea_2025/">Nighthawk Pages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/mirabellea_2025/blogs/">Blogs</a><a class="page-link" href="/mirabellea_2025/search/">Search</a><a class="page-link" href="/mirabellea_2025/about/">About Mirabelle</a><a class="page-link" href="/mirabellea_2025/README4YML.html">Readme</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header"><h1 class="post-title p-name" itemprop="name headline">Tools Verify using Shell</h1><p class="page-description">Linux and the shell is used in this example to setup and verify the installation of the tools.  Additionally, a few programming exercises are included.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2023-08-22T00:00:00-07:00" itemprop="datePublished">
+        Aug 22, 2023
+      </time>• <span class="read-time" title="Estimated read time">
+    
+    
+      31 min read
+    
+</span>
+    </p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/mirabellea_2025/categories/ap#DevOps">DevOps</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#computers-and-terminals">Computers and Terminals</a></li><li><a href="#setup-a-personal-github-pages-project">Setup a Personal GitHub Pages Project</a></li><li><a href="#shell-script-and-variables">Shell Script and Variables</a></li><li><a href="#describing-the-outputs-of-the-variables">Describing the Outputs of the Variables</a></li><li><a href="#project-setup-and-analysis-with-bash-scripts">Project Setup and Analysis with Bash Scripts</a><ul><li><a href="#pull-code">Pull Code</a></li><li><a href="#look-at-files-in-github-project">Look at Files in GitHub Project</a></li><li><a href="#look-at-file-list-with-hidden-and-long-attributes">Look at File List with Hidden and Long Attributes</a></li><li><a href="#look-inside-a-markdown-file">Look inside a Markdown File</a></li></ul></li><li><a href="#env-git-and-github">Env, Git, and GitHub</a></li><li><a href="#advanced-shell-project">Advanced Shell project</a></li><li><a href="#display-shell-commands-help-using-man">Display Shell commands help using <code class="language-plaintext highlighter-rouge">man</code></a></li></ul><h2 id="computers-and-terminals">Computers and Terminals</h2>
+
+<p>A brief overview of Terminal and Linux is a step on your way to becoming a Linux expert. When a computer boots up, <strong>a kernel (MacOS, Windows, Linux) is started</strong>. This kernel is the core of the operating system and manages hardware resources. Above the kernel, various applications run, including the <strong>shell</strong> and <strong>terminal</strong>, which allow users to interact with the system using a basic set of commands provided by the kernel.</p>
+
+<p>Typically, casual users interact with the system through a Desktop User Interface (UI) that is started by the computer’s boot-up processes. However, to interact directly with the shell, users can run a “terminal” application through the Desktop UI. Additionally, <strong>VS Code provides the ability to activate a “terminal”</strong> within its editing environment, making it convenient for developers to execute commands without leaving the code editor.</p>
+
+<p>In this next phase, we will use a Jupyter notebook to perform Linux commands through a terminal. The Jupyter notebook is an application that runs above the kernel, providing an interactive environment for writing and executing code, including shell commands. This setup allows us to seamlessly integrate code execution, data analysis, and documentation in one place, enhancing our productivity and learning experience.</p>
+
+<h2 id="setup-a-personal-github-pages-project">Setup a Personal GitHub Pages Project</h2>
+
+<p>You will be making a personal copy of the course repository. Be sure to have a GitHub account!!!</p>
+
+<ul>
+  <li>Use the <strong>Green “Use this Template”</strong> button on the <a href="https://github.com/nighthawkcoders/portfolio_2025">portfolio_2025</a> repository page to set up your personal GitHub Pages repository.</li>
+  <li>Create a new repository.</li>
+  <li>
+    <p>Fill in the dialog and select the <strong>Repository Name</strong> to be under your GitHub ID ownership.</p>
+
+    <p><img src="/mirabellea_2025/images/notebooks/foundation/create_repo.jpg" alt="create repo" /></p>
+  </li>
+  <li>After this is complete, use the <strong>Green “Code”</strong> button on the newly created repository page to capture your “Project Repo” name.</li>
+</ul>
+
+<p>In the next few code cells, we will run a bash (shell) script to pull a GitHub project.</p>
+
+<h2 id="shell-script-and-variables">Shell Script and Variables</h2>
+
+<p>We will ultimately run a bash (shell) script to pull a GitHub project. This next script simply sets up the necessary <strong>environment variables</strong> to tell the script the location of repository from GitHub and where to copy the output.</p>
+
+<p>For now, focus on each line that begins with <code class="language-plaintext highlighter-rouge">export</code>. These are <strong>shell variables</strong>. Each line has a <strong>name</strong> (after the keyword <code class="language-plaintext highlighter-rouge">export</code>) and a <strong>value</strong> (after the equal sign).</p>
+
+<p>Here is a full description:</p>
+
+<ul>
+  <li><strong>Creates a temporary file</strong> <code class="language-plaintext highlighter-rouge">/tmp/variables.sh</code> to store environment variables.</li>
+  <li><strong>Sets the <code class="language-plaintext highlighter-rouge">project_dir</code> variable</strong> to your home directory with a subdirectory named <code class="language-plaintext highlighter-rouge">nighthawk</code>. You can change <code class="language-plaintext highlighter-rouge">nighthawk</code> to a different name to test your git clone.</li>
+  <li><strong>Sets the <code class="language-plaintext highlighter-rouge">project</code> variable</strong> to a subdirectory within <code class="language-plaintext highlighter-rouge">project_dir</code> named <code class="language-plaintext highlighter-rouge">portfolio_2025</code>. You can change <code class="language-plaintext highlighter-rouge">portfolio_2025</code> to the name of your project.</li>
+  <li><strong>Sets the <code class="language-plaintext highlighter-rouge">project_repo</code> variable</strong> to the URL of the GitHub repository. Change this to the project you created from the <code class="language-plaintext highlighter-rouge">portfolio_2025</code> template.</li>
+</ul>
+
+<p><strong>By running this script, you will prepare your environment for cloning</strong> and working on your GitHub project. This is an essential step in setting up your development environment and ensuring that all dependencies are correctly configured.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Dependency Variables, set to match your project directories
+</span>
+<span class="n">cat</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span> <span class="o">&gt;</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+<span class="n">export</span> <span class="n">project_dir</span><span class="o">=</span><span class="err">$</span><span class="n">HOME</span><span class="o">/</span><span class="n">nighthawk</span>  <span class="c1"># change nighthawk to different name to test your git clone
+</span><span class="n">export</span> <span class="n">project</span><span class="o">=</span>\<span class="err">$</span><span class="n">project_dir</span><span class="o">/</span><span class="n">mirabellea_2025</span>  <span class="c1"># change mirabellea_2025 to name of project from git clone
+</span><span class="n">export</span> <span class="n">project_repo</span><span class="o">=</span><span class="s">"https://github.com/mirabelle2025/mirabellea_2025.git"</span>  <span class="c1"># change to project you created from portfolio_2025 template 
+</span><span class="n">EOF</span>
+</code></pre></div></div>
+
+<h2 id="describing-the-outputs-of-the-variables">Describing the Outputs of the Variables</h2>
+
+<p>The next script will extract the saved variables and display their values. Here is a description of the commands:</p>
+
+<ul>
+  <li>The <code class="language-plaintext highlighter-rouge">source</code> command loads the variables that we saved in the <code class="language-plaintext highlighter-rouge">/tmp/variables.sh</code> file in the previous code cell.</li>
+  <li>The <code class="language-plaintext highlighter-rouge">echo</code> commands display the contents of the named variables:
+    <ul>
+      <li><strong>project_dir</strong>: The directory where your project is located.</li>
+      <li><strong>project</strong>: The specific project directory within <code class="language-plaintext highlighter-rouge">project_dir</code>.</li>
+      <li><strong>project_repo</strong>: The URL of the GitHub repository.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>By running this script, you can verify that the environment variables are correctly set in your development environment. If they don’t match up, go back to the previous code cell and make the necessary corrections.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="c1"># Output shown title and value variables
+</span><span class="n">echo</span> <span class="s">"Project dir: $project_dir"</span>
+<span class="n">echo</span> <span class="s">"Project: $project"</span>
+<span class="n">echo</span> <span class="s">"Repo: $project_repo"</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Project dir: /home/mirabelle2025/nighthawk
+Project: /home/mirabelle2025/nighthawk/mirabellea_2025
+Repo: https://github.com/mirabelle2025/mirabellea_2025.git
+</code></pre></div></div>
+
+<h2 id="project-setup-and-analysis-with-bash-scripts">Project Setup and Analysis with Bash Scripts</h2>
+<p>The bash scripts that follow automate what was done in the Tools Installation procedures with regards to cloning a GitHub project. Doing this in a script fashion adds the following benefits:</p>
+
+<ul>
+  <li>After completing these steps, we will have notes on how to set up and verify a project.</li>
+  <li>By reviewing these commands, you will start to learn the basics of Linux.</li>
+  <li>By setting up these code cells, you will be learning how to develop automated scripts using Shell programming.</li>
+  <li>You will learn that pretty much anything we type on a computer can be automated through the use of variables and a coding language.</li>
+</ul>
+
+<h3 id="pull-code">Pull Code</h3>
+
+<blockquote>
+  <p>Pull code from GitHub to your machine. This is a <strong>bash script</strong>, a sequence of commands, that will create a project directory and add the “project” from GitHub to the vscode directory. There is conditional logic to make sure that the clone only happens if it does not (!) exist. Here are some key elements in this code:</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> command (change directory), remember this from the terminal session.</li>
+  <li><code class="language-plaintext highlighter-rouge">if</code> statements (conditional statements, called selection statements by College Board), code inside only happens if the condition is met.</li>
+</ul>
+
+<p>Run the script two times and you will see that the output changes.  In the second run, the files exist and it impact the flow of the code.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Using conditional statement to create a project directory and project"</span>
+
+<span class="n">cd</span> <span class="o">~</span>    <span class="c1"># start in home directory
+</span>
+<span class="c1"># Conditional block to make a project directory
+</span><span class="k">if</span> <span class="p">[</span> <span class="err">!</span> <span class="o">-</span><span class="n">d</span> <span class="err">$</span><span class="n">project_dir</span> <span class="p">]</span>
+<span class="n">then</span> 
+    <span class="n">echo</span> <span class="s">"Directory $project_dir does not exist... making directory $project_dir"</span>
+    <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="err">$</span><span class="n">project_dir</span>
+<span class="n">fi</span>
+<span class="n">echo</span> <span class="s">"Directory $project_dir exists."</span> 
+
+<span class="c1"># Conditional block to git clone a project from project_repo
+</span><span class="k">if</span> <span class="p">[</span> <span class="err">!</span> <span class="o">-</span><span class="n">d</span> <span class="err">$</span><span class="n">project</span> <span class="p">]</span>
+<span class="n">then</span>
+    <span class="n">echo</span> <span class="s">"Directory $project does not exist... cloning $project_repo"</span>
+    <span class="n">cd</span> <span class="err">$</span><span class="n">project_dir</span>
+    <span class="n">git</span> <span class="n">clone</span> <span class="err">$</span><span class="n">project_repo</span>
+    <span class="n">cd</span> <span class="o">~</span>
+<span class="n">fi</span>
+<span class="n">echo</span> <span class="s">"Directory $project exists."</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Using conditional statement to create a project directory and project
+Directory /home/mirabelle2025/nighthawk exists.
+Directory /home/mirabelle2025/nighthawk/mirabellea_2025 exists.
+</code></pre></div></div>
+
+<h3 id="look-at-files-in-github-project">Look at Files in GitHub Project</h3>
+
+<blockquote>
+  <p>All computers contain files and directories. The clone brought more files from the cloud to your machine. Review the bash shell script, observe the commands that show and interact with files and directories. These were used during setup.</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ls</code> lists computer files in Unix and Unix-like operating systems.</li>
+  <li><code class="language-plaintext highlighter-rouge">cd</code> offers a way to navigate and change the working directory.</li>
+  <li><code class="language-plaintext highlighter-rouge">pwd</code> prints the working directory.</li>
+  <li><code class="language-plaintext highlighter-rouge">echo</code> is used to display a line of text/string that is passed as an argument.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Navigate to project, then navigate to area wwhere files were cloned"</span>
+<span class="n">cd</span> <span class="err">$</span><span class="n">project</span>
+<span class="n">pwd</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"list top level or root of files with project pulled from github"</span>
+<span class="n">ls</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Navigate to project, then navigate to area wwhere files were cloned
+/home/mirabelle2025/nighthawk/mirabellea_2025
+
+list top level or root of files with project pulled from github
+404.html
+Gemfile
+Gemfile.lock
+LICENSE
+Makefile
+README.md
+README4YML.md
+_config.yml
+_data
+_includes
+_layouts
+_notebooks
+_posts
+_sass
+_site
+assets
+images
+index.md
+navigation
+requirements.txt
+scripts
+venv
+</code></pre></div></div>
+
+<h3 id="look-at-file-list-with-hidden-and-long-attributes">Look at File List with Hidden and Long Attributes</h3>
+
+<blockquote>
+  <p>Most Linux commands have options to enhance behavior. The enhanced listing below shows permission bits, owner of the file, size, and date.</p>
+</blockquote>
+
+<p>Some useful <code class="language-plaintext highlighter-rouge">ls</code> flags:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">-a</code>: List all files including hidden files.</li>
+  <li><code class="language-plaintext highlighter-rouge">-l</code>: List in long format.</li>
+  <li><code class="language-plaintext highlighter-rouge">-h</code>: Human-readable file sizes.</li>
+  <li><code class="language-plaintext highlighter-rouge">-t</code>: Sort by modification time.</li>
+  <li><code class="language-plaintext highlighter-rouge">-R</code>: Reverse the order of the sort.</li>
+</ul>
+
+<p><a href="https://www.rapidtables.com/code/linux/ls.html">ls reference</a></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Navigate to project, then navigate to area wwhere files were cloned"</span>
+<span class="n">cd</span> <span class="err">$</span><span class="n">project</span>
+<span class="n">pwd</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"list all files in long format"</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">al</span>   <span class="c1"># all files -a (hidden) in -l long listing
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Navigate to project, then navigate to area wwhere files were cloned
+/home/mirabelle2025/nighthawk/mirabellea_2025
+
+list all files in long format
+total 140
+drwxr-xr-x 17 mirabelle2025 mirabelle2025  4096 Sep  3 09:58 .
+drwxr-xr-x  5 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 ..
+drwxr-xr-x  8 mirabelle2025 mirabelle2025  4096 Sep  3 10:11 .git
+drwxr-xr-x  3 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 .github
+-rw-r--r--  1 mirabelle2025 mirabelle2025   251 Aug 29 09:53 .gitignore
+drwxr-xr-x  2 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 .vscode
+-rw-r--r--  1 mirabelle2025 mirabelle2025   436 Aug 29 09:53 404.html
+-rw-r--r--  1 mirabelle2025 mirabelle2025   122 Aug 29 09:53 Gemfile
+-rw-r--r--  1 mirabelle2025 mirabelle2025  7665 Aug 29 09:53 Gemfile.lock
+-rw-r--r--  1 mirabelle2025 mirabelle2025 11357 Aug 29 09:53 LICENSE
+-rw-r--r--  1 mirabelle2025 mirabelle2025  3549 Aug 29 09:53 Makefile
+-rw-r--r--  1 mirabelle2025 mirabelle2025 14171 Aug 29 09:53 README.md
+-rw-r--r--  1 mirabelle2025 mirabelle2025    79 Aug 29 09:53 README4YML.md
+-rw-r--r--  1 mirabelle2025 mirabelle2025   847 Aug 29 10:18 _config.yml
+drwxr-xr-x  2 mirabelle2025 mirabelle2025  4096 Aug 30 09:58 _data
+drwxr-xr-x  4 mirabelle2025 mirabelle2025  4096 Aug 30 09:59 _includes
+drwxr-xr-x  2 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 _layouts
+drwxr-xr-x  3 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 _notebooks
+drwxr-xr-x  3 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 _posts
+drwxr-xr-x  4 mirabelle2025 mirabelle2025  4096 Aug 30 10:05 _sass
+drwxr-xr-x 13 mirabelle2025 mirabelle2025  4096 Sep  3 10:06 _site
+drwxr-xr-x  5 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 assets
+drwxr-xr-x  3 mirabelle2025 mirabelle2025  4096 Aug 29 11:05 images
+-rw-r--r--  1 mirabelle2025 mirabelle2025  5263 Sep  3 10:06 index.md
+drwxr-xr-x  2 mirabelle2025 mirabelle2025  4096 Aug 30 10:01 navigation
+-rw-r--r--  1 mirabelle2025 mirabelle2025    57 Aug 29 09:53 requirements.txt
+drwxr-xr-x  3 mirabelle2025 mirabelle2025  4096 Aug 29 09:53 scripts
+drwxr-xr-x  7 mirabelle2025 mirabelle2025  4096 Sep  3 09:59 venv
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Look for posts"</span>
+<span class="n">export</span> <span class="n">posts</span><span class="o">=</span><span class="err">$</span><span class="n">project</span><span class="o">/</span><span class="n">_posts</span>  <span class="c1"># _posts inside project
+</span><span class="n">cd</span> <span class="err">$</span><span class="n">posts</span>  <span class="c1"># this should exist per fastpages
+</span><span class="n">pwd</span>  <span class="c1"># present working directory
+</span><span class="n">ls</span> <span class="o">-</span><span class="n">lR</span>  <span class="c1"># list posts recursively
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Look for posts
+/home/mirabelle2025/nighthawk/mirabellea_2025/_posts
+.:
+total 4
+drwxr-xr-x 4 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 Foundation
+
+./Foundation:
+total 12
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 2683 Aug 29 09:53 2024-08-21-sprint1_plan_IPYNB_2_.md
+drwxr-xr-x 2 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 A-pair_programming
+drwxr-xr-x 2 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 B-tools_and_equipment
+
+./Foundation/A-pair_programming:
+total 24
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  5433 Aug 29 09:53 2023-08-16-pair_programming.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  3242 Aug 29 09:53 2023-08-16-pair_showcase_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 10043 Aug 29 09:53 2023-08-17-pair_habits_IPYNB_2_.md
+
+./Foundation/B-tools_and_equipment:
+total 92
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  8196 Aug 29 09:53 2023-08-19-devops_accounts_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  4949 Aug 29 09:53 2023-08-21-devops_tools-home_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 17367 Aug 29 09:53 2023-08-21-devops_tools-setup_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 16130 Aug 29 09:53 2023-08-22-devops_tools-verify_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 25977 Aug 29 09:53 2023-08-23-devops-githhub_pages-play_IPYNB_2_.md
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  7506 Aug 29 09:53 2023-08-23-devops-hacks_IPYNB_2_.md
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Look for notebooks"</span>
+<span class="n">export</span> <span class="n">notebooks</span><span class="o">=</span><span class="err">$</span><span class="n">project</span><span class="o">/</span><span class="n">_notebooks</span>  <span class="c1"># _notebooks is inside project
+</span><span class="n">cd</span> <span class="err">$</span><span class="n">notebooks</span>   <span class="c1"># this should exist per fastpages
+</span><span class="n">pwd</span>  <span class="c1"># present working directory
+</span><span class="n">ls</span> <span class="o">-</span><span class="n">lR</span>  <span class="c1"># list notebooks recursively
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Look for notebooks
+/home/mirabelle2025/nighthawk/mirabellea_2025/_notebooks
+.:
+total 4
+drwxr-xr-x 4 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 Foundation
+
+./Foundation:
+total 12
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 3509 Aug 29 09:53 2024-08-21-sprint1_plan.ipynb
+drwxr-xr-x 2 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 A-pair_programming
+drwxr-xr-x 2 mirabelle2025 mirabelle2025 4096 Sep  3 10:11 B-tools_and_equipment
+
+./Foundation/A-pair_programming:
+total 16
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  3918 Aug 29 09:53 2023-08-16-pair_showcase.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 11624 Aug 29 09:53 2023-08-17-pair_habits.ipynb
+
+./Foundation/B-tools_and_equipment:
+total 112
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  9767 Aug 29 09:53 2023-08-19-devops_accounts.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  5931 Aug 29 09:53 2023-08-21-devops_tools-home.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 22859 Aug 29 09:53 2023-08-21-devops_tools-setup.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 23121 Sep  3 10:14 2023-08-22-devops_tools-verify.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 32309 Aug 29 09:53 2023-08-23-devops-githhub_pages-play.ipynb
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  9478 Aug 29 09:53 2023-08-23-devops-hacks.ipynb
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Look for images, print working directory, list files"</span>
+<span class="n">cd</span> <span class="err">$</span><span class="n">project</span><span class="o">/</span><span class="n">images</span>  <span class="c1"># this should exist per fastpages
+</span><span class="n">pwd</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">lR</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Look for images, print working directory, list files
+/home/mirabelle2025/nighthawk/mirabellea_2025/images
+.:
+total 4256
+-rw-r--r-- 1 mirabelle2025 mirabelle2025   15406 Aug 29 09:53 favicon.ico
+-rw-r--r-- 1 mirabelle2025 mirabelle2025   34239 Aug 29 09:53 logo.png
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 4298034 Aug 29 11:05 mario_animation.png
+drwxr-xr-x 3 mirabelle2025 mirabelle2025    4096 Aug 29 09:53 notebooks
+
+./notebooks:
+total 4
+drwxr-xr-x 2 mirabelle2025 mirabelle2025 4096 Aug 29 09:53 foundation
+
+./notebooks/foundation:
+total 364
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 310743 Aug 29 09:53 create_repo.png
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  29416 Aug 29 09:53 push.jpg
+-rw-r--r-- 1 mirabelle2025 mirabelle2025  17105 Aug 29 09:53 stage.jpg
+-rw-r--r-- 1 mirabelle2025 mirabelle2025   6659 Aug 29 09:53 wsl.jpg
+</code></pre></div></div>
+
+<h3 id="look-inside-a-markdown-file">Look inside a Markdown File</h3>
+<blockquote>
+  <p>“cat” reads data from the file and gives its content as output</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">echo</span> <span class="s">"Navigate to project, then navigate to area wwhere files were cloned"</span>
+
+<span class="n">cd</span> <span class="err">$</span><span class="n">project</span>
+<span class="n">echo</span> <span class="s">"show the contents of README.md"</span>
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="n">cat</span> <span class="n">README</span><span class="p">.</span><span class="n">md</span>  <span class="c1"># show contents of file, in this case markdown
+</span><span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"end of README.md"</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Navigate to project, then navigate to area wwhere files were cloned
+show the contents of README.md
+
+# Introduction
+
+Nighthawk Pages is a project designed to support students in their Computer Science and Software Engineering education. It offers a wide range of resources including tech talks, code examples, and educational blogs.
+
+GitHub Pages can be customized by the blogger to support computer science learnings as the student works through the pathway of using Javascript, Python/Flask, Java/Spring.  
+
+## Student Requirements
+
+Del Norte HS students will be required to review their personal GitHub Pages at each midterm and final.  This review will contain a compilation of personal work performed within each significant grading period.
+
+In general, Students and Teachers are expected to use GitHub pages to build lessons, complete classroom hacks, perform work on JavaScript games, and serve as a frontend to full-stack applications.
+
+Exchange of information could be:
+
+1. sharing a file:  `wget "raw-link.ipynb"
+2. creating a template from this repository
+3. sharing a fork among team members
+4. etc.
+
+---
+
+## History
+
+This project is in its 3rd revision (aka 3.0).
+
+The project was initially based on Fastpages. But this project has diverged from those roots into an independent entity.  The decision to separate from Fastpages was influenced by the deprecation of Fastpages by authors.  It is believed by our community that the authors of fastpages turned toward Quatro.  After that change of direction fastpages did not align with the Teacher's goals and student needs. The Nighthawk Pages project has more of a raw development blogging need.
+
+### License
+
+The Apache license has its roots in Fastpages.  Thus, it carries its license forward.  However, most of the code is likely unrecognizable from those roots.
+
+### Key Features
+
+- **Code Examples**: Provides practical coding examples in JavaScript, including a platformer game, and frontend code for user databases using Python and Java backends.
+- **Educational Blogs**: Offers instructional content on various topics such as developer tools setup, deployment on AWS, SQL databases, machine learning, and data structures. It utilizes Jupyter Notebooks for interactive lessons and coding challenges.
+- **Tools and Integrations**: Features GitHub actions for blog publishing, Utterances for blog commenting, local development support via Makefile and scripts, and styling with the Minima Theme and SASS. It also includes a new integration with GitHub Projects and Issues.
+
+### Contributions
+
+- **Notable Contributions**: Highlights significant contributions to the project, including theme development, search and tagging functionality, GitHub API integration, and the incorporation of GitHub Projects into GitHub pages. Contributors such as Tirth Thakker, Mirza Beg, and Toby Ledder have played crucial roles in these developments.
+
+- **Blog Contributions**:  Often students contribute articles and blogs to this project.  Their names are typically listed in the front matter of their contributing post.
+
+---
+
+## GitHub Pages setup
+
+The absolutes in setup up...
+
+**Activate GitHub Pages Actions**: This step involves enabling GitHub Pages Actions for your project. By doing so, your project will be automatically deployed using GitHub Pages Actions, ensuring that your project is always up to date with the latest changes you push to your repository.
+
+- On the GitHub website for the repository go to the menu: Settings -&gt; Pages -&gt;Build
+- Under the Deployment location on the page, select "GitHub Actions".
+
+**Update `_config.yml`**: You need to modify the `_config.yml` file to reflect your repository's name. This configuration is crucial because it ensures that your project's styling is correctly applied, making your deployed site look as intended rather than unstyled or broken.
+
+```text
+github_repo: "student_2025" 
+baseurl: "/student_2025"
+```
+
+**Set Repository Name in Makefile**: Adjust the `REPO_NAME` variable in your Makefile to match your GitHub repository's name. This action facilitates the automatic updating of posts and notebooks on your local development server, improving the development process.
+
+```make
+# Configuration, override port with usage: make PORT=4200
+PORT ?= 4100
+REPO_NAME ?= student_2025
+LOG_FILE = /tmp/jekyll$(PORT).log
+```
+
+### Tool requirements
+
+All `GitHub Pages` websites are managed on GitHub infrastructure and use GitHub version control.  Each time we change files in GitHub it initiates a GitHub Action, a continuous integration and development toolset, that rebuilds and publishes the site with Jekyll.  
+
+- GitHub uses `Jekyll` to transform your markdown and HTML content into static websites and blogs. [Jekyll](https://jekyllrb.com/).
+- A Linux shell is required to work with this project integration with GitHub Pages, GitHub and VSCode.  Ubuntu is the preferred shell, though MacOS shell is supported as well.  There will be some key setup scripts that follow in the README.
+- Visual Studio Code is the Nighthawk Pages author's preferred code editor and extensible development environment.  VSCode has a rich ecosystem of developer extensions that ease working with GitHub Pages, GitHub, and many programming languages.  Setting up VSCode and extensions will be elaborated upon in this document.
+- An anatomy section in this README will describe GitHub Pages and conventions that are used to organize content and files.  This includes file names, key coding files, metadata tagging of blogs, styling tooling for blogs, etc.
+
+### Development Environment Setup
+
+Comprehensive start. A topic-by-topic guide to getting this project running is published [here](https://nighthawkcoders.github.io/portfolio_2025/devops/tools/home).
+
+Quick start.  A quick start below is a reminder, but is dependent on your knowledge.  Only follow this instruction if you need a refresher.  Always default to the comprehensive start if any problem occurs.
+
+#### Clone Repo
+
+Run these commands to obtain the project, then locate into the project directory with the terminal, install an extensive set of tools, and make.
+
+```bash
+git clone &lt;this-repo&gt; # git clone https://github.com/nighthawkcoders/student_2025.git 
+cd &lt;repo-dir&gt;/scripts # cd student_2025
+```
+
+#### Windows WSL and/or Ubuntu Users
+
+- Execute the script: `./activate_ubuntu.sh`
+
+#### macOS Users
+
+- Execute the script: `./activate_macos.sh`
+
+#### Kasm Cloud Desktop Users
+
+- Execute the script: `./activate.sh`
+
+## Run Server on localhost
+
+To preview the project you will need to "make" the project.
+
+### Bundle install
+
+The very first time you clone run project you will need to run this Ruby command as the final part of your setup.
+
+```bash
+bundle install
+```
+
+### Start the Server  
+
+This requires running terminal commands `make`, `make stop`, `make clean`, or `make convert` to manage the running server.  Logging of details will appear in the terminal.   A `Makefile` has been created in the project to support commands and start processes.
+
+Start the server, this is the best choice for initial and iterative development.  Note. after the initial `make`, you should see files automatically refresh in the terminal on VSCode save.
+
+  ```bash
+  make
+  ```
+
+### Load web application into the Browser
+
+Start the preview server in the terminal,
+The terminal output from `make` shows the server address. "Cmd" or "Ctl" click the http location to open the preview server in a browser. Here is an example Server address message, click on the Server address to load:...
+
+  ```text
+  http://0.0.0.0:4100/student_2025/
+  ```
+
+### Regeneration of web application
+
+Save on ".ipynb" or ".md" file activiates "regeneration". An example terminal message is below.  Refresh the browser to see updates after the message displays.
+
+  ```text
+  Regenerating: 1 file(s) changed at 2023-07-31 06:54:32
+      _notebooks/2024-01-04-cockpit-setup.ipynb
+  ```
+
+### Other "make" commands
+
+Terminal messages are generated from background processes.  At any time, click return or enter in a terminal window to obtain a prompt.  Once you have the prompt you can use the terminal as needed for other tasks.  Always return to the root of project `cd ~/vscode/student_2025` for all "make" actions.
+
+#### Stop the preview server
+
+Stopping the server ends the web server applications running process.  However, it leaves constructed files in the project in a ready state for the next time you run `make`.
+
+  ```bash
+  make stop
+  ```
+
+### Clean the local web application environment
+
+This command will top the server and "clean" all previously constructed files (ie .ipynb -&gt; .md). This is the best choice when renaming files has created duplicates that are visible when previewing work.
+
+  ```bash
+  make clean
+  ```
+
+### Observe build errors
+
+Test Jupyter Notebook conversions (ie .ipynb -&gt; .md), this is the best choice to see if an IPYNB conversion error is occurring.
+
+  ```bash
+  make convert
+  ```
+
+---
+
+## Development Support
+
+### File Names in "_posts", "_notebooks"
+
+There are two primary directories for creating blogs.  The "_posts" directory is for authoring in markdown only.  The "_notebooks" allows for markdown, pythons, javascript and more.
+
+To name a file, use the following structure (If dates are in the future, review your config.yml setting if you want them to be viewed).  Review these naming conventions.
+
+- For markdown files in _posts:
+  - year-month-day-fileName.md
+    - GOOD EXAMPLE: 2021-08-02-First-Day.md
+    - BAD EXAMPLE: 2021-8-2-first-day.md
+    - BAD EXAMPLE: first-day.md
+    - BAD EXAMPLE: 2069-12-31-First-Day.md
+
+- For Jupyter notebooks in _notebooks:
+  - year-month-day-fileName.ipynb
+    - GOOD EXAMPLE: 2021-08-02-First-Day.ipynb
+    - BAD EXAMPLE: 2021-8-2-first-day.ipynb
+    - BAD EXAMPLE: first-day.ipynb
+    - BAD EXAMPLE: 2069-12-31-First-Day.ipynb
+
+### Tags
+
+Tags are used to organize pages by their tag the way to add tags is to add the following to your front matter such as the example seen here `categories: [Tools]` Each item in the same category will be lumped together to be seen easily on the search page.
+
+### Search
+
+All pages can be searched for using the built-in search bar. This search bar will search for any word in the title of a page or in the page itself. This allows for easily finding pages and information that you are looking for. However, sometimes this may not be desirable so to hide a page from the search you need to add `search_exclude: true` to the front matter of the page. This will hide the page from appearing when the viewer uses search.
+
+### Navigation Bar
+
+To add pages to the top navigation bar use _config.yml to order and determine which menus you want and how to order them.  Review the_config.yml in this project for an example.
+
+### Blog Page
+
+There is a blog page that has options for images and a description of the page. This page can help the viewer understand what the page is about and what they can expect to find on the page. The way to add images to a page is to have the following front matter `image: /images/file.jpg` and then the name of the image that you want to use. The image must be in the `images` folder. Furthermore, if you would like the file to not show up on the blog page `hide: true` can be added to the front matter.
+
+### SASS support
+
+NIGHTHAWK Pages support a variety of different themes that are each overlaid on top of minima. To use each theme, go to the "_sass/minima/custom-styles.scss" file and simply comment or uncomment the theme you want to use.
+
+To learn about the minima themes search for "GitHub Pages minima" and review the README.
+
+To find a new theme search for "Github Pages Themes".
+
+### Includes
+
+- Nighthawk Pages uses liquid syntax to import many common page elements that are present throughout the repository. These common elements are imported from the _includes directory. If you want to add one of these common elements, use liquid syntax to import the desired element to your file. Here’s an example of the liquid syntax used to import: `&lt;h3&gt;
+&lt;a class="post-link" href=""&gt;
+
+&lt;/a&gt;
+</code></pre></div></div>
+<p>&lt;/h3&gt;&lt;p class="post-meta"&gt;&lt;/p&gt;
+` Note that the liquid syntax is surrounded by curly braces and percent signs. This can be used anywhere in the repository.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>### Layouts
+
+- To use or create a custom page layout, make an HTML page inside the _layouts directory, and when you want to use that layout in a file, use the following front matter `layout: [your layout here]`.  All layouts will be written in liquid to define the structure of the page.
+
+### Metadata
+
+Metadata, also known as "front matter", is a set of key-value pairs that can provide additional information to GitHub Pages about .md and .ipynb files. This can and probably will be used in other file types (ie doc, pdf) if we add them to the system.
+
+In the front matter, you can also define things like a title and description for the page.  Additional front matter is defined to place content on the "Computer Science Lab Notebook" page.  The `courses:` key will place data on a specific page with the nested `week:` placing data on a specific row on the page.  The `type:` key in "front matter" will place the blog under the plans, hacks(ToDo), and tangibles columns.
+
+- In our files, the front matter is defined at the top of the page or the first markdown cell.
+
+  - First, open one of the .md or .ipynb files already included in either your _posts|_notebooks folder.
+
+  - In the .md file, you should notice something similar to this at the top of the page. To see this in your .ipynb files you will need to double-click the markdown cell at the top of the file.
+
+  ```yaml
+  ---
+  toc: true
+  comments: true
+  layout: post
+  title: Jupyter Python Sample
+  description: Example Blog!!!  This shows code and notes from hacks.
+  type: ccc
+  courses: { csa: {week: 5} }
+  ---
+  ```
+
+- The front matter will always have '---' at the top and bottom to distinguish it and each key-value pair will be separated by a ':'.
+
+- Here we can modify things like the title and description.
+
+- The type value will tell us which column this is going to appear under the time box supported pages.  The "ccc" stands for Code, Code, Code.
+
+- The courses will tell us which menu item it will be under, in this case, the `csa` menu, and the `week` tells it what row (week) it will appear under that menu.
+
+end of README.md
+</code></pre></div></div>
+
+<h2 id="env-git-and-github">Env, Git, and GitHub</h2>
+
+<blockquote>
+  <p>Env(ironment) is used to capture things like the path to the Code or Home directory. Git and GitHub are not only used to exchange code between individuals but are also often used to exchange code through servers, in our case for website deployment. All tools we use have behind-the-scenes relationships with the system they run on (MacOS, Windows, Linux) or a relationship with servers to which they are connected (e.g., GitHub). There is an “env” command in bash. There are environment files and setting files (e.g., <code class="language-plaintext highlighter-rouge">.git/config</code>) for Git. They both use a key/value concept.</p>
+</blockquote>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">env</code> shows settings for your shell.</li>
+  <li><code class="language-plaintext highlighter-rouge">git clone</code> sets up a directory of files.</li>
+  <li><code class="language-plaintext highlighter-rouge">cd $project</code> allows the user to move inside that directory of files.</li>
+  <li><code class="language-plaintext highlighter-rouge">.git</code> is a hidden directory that is used by Git to establish a relationship between the machine and the Git server on GitHub.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># This command has no dependencies
+</span>
+<span class="n">echo</span> <span class="s">"Show the shell environment variables, key on left of equal value on right"</span>
+<span class="n">echo</span> <span class="s">""</span>
+
+<span class="n">env</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Show the shell environment variables, key on left of equal value on right
+
+SHELL=/bin/bash
+PYTHONUNBUFFERED=1
+WSL2_GUI_APPS_ENABLED=1
+WSL_DISTRO_NAME=Ubuntu-24.04
+WT_SESSION=aa3d96a5-0076-463d-a248-52976fbcecd2
+PYTHON_FROZEN_MODULES=on
+ELECTRON_RUN_AS_NODE=1
+VSCODE_AMD_ENTRYPOINT=vs/workbench/api/node/extensionHostProcess
+NAME=Code
+PWD=/home/mirabelle2025/nighthawk/mirabellea_2025/_notebooks/Foundation/B-tools_and_equipment
+LOGNAME=mirabelle2025
+PYDEVD_IPYTHON_COMPATIBLE_DEBUGGING=1
+HOME=/home/mirabelle2025
+LANG=C.UTF-8
+WSL_INTEROP=/run/WSL/88058_interop
+LS_COLORS=rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=00:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.avif=01;35:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.webp=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:*~=00;90:*#=00;90:*.bak=00;90:*.crdownload=00;90:*.dpkg-dist=00;90:*.dpkg-new=00;90:*.dpkg-old=00;90:*.dpkg-tmp=00;90:*.old=00;90:*.orig=00;90:*.part=00;90:*.rej=00;90:*.rpmnew=00;90:*.rpmorig=00;90:*.rpmsave=00;90:*.swp=00;90:*.tmp=00;90:*.ucf-dist=00;90:*.ucf-new=00;90:*.ucf-old=00;90:
+VIRTUAL_ENV=/home/mirabelle2025/nighthawk/mirabellea_2025/venv
+WAYLAND_DISPLAY=wayland-0
+FORCE_COLOR=1
+PYDEVD_USE_FRAME_EVAL=NO
+CLICOLOR=1
+VSCODE_L10N_BUNDLE_LOCATION=
+CLICOLOR_FORCE=1
+GEM_HOME=/home/mirabelle2025/gems
+LESSCLOSE=/usr/bin/lesspipe %s %s
+VSCODE_HANDLES_SIGPIPE=true
+TERM=xterm-color
+LESSOPEN=| /usr/bin/lesspipe %s
+USER=mirabelle2025
+GIT_PAGER=cat
+PYTHONIOENCODING=utf-8
+DISPLAY=:0
+SHLVL=2
+PAGER=cat
+VSCODE_CWD=/mnt/c/Users/mirab/AppData/Local/Programs/Microsoft VS Code
+VIRTUAL_ENV_PROMPT=(venv) 
+MPLBACKEND=module://matplotlib_inline.backend_inline
+XDG_RUNTIME_DIR=/run/user/1002/
+DEBUGINFOD_URLS=https://debuginfod.ubuntu.com 
+WSLENV=ELECTRON_RUN_AS_NODE/w:WT_SESSION:WT_PROFILE_ID:
+
+VSCODE_WSL_EXT_LOCATION=/mnt/c/Users/mirab/.vscode/extensions/ms-vscode-remote.remote-wsl-0.88.2
+XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/snapd/desktop
+PATH=/home/mirabelle2025/nighthawk/mirabellea_2025/venv/bin:/home/mirabelle2025/gems/bin:/home/mirabelle2025/gems/bin:/home/mirabelle2025/gems/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/WINDOWS/system32:/mnt/c/WINDOWS:/mnt/c/WINDOWS/System32/Wbem:/mnt/c/WINDOWS/System32/WindowsPowerShell/v1.0/:/mnt/c/WINDOWS/System32/OpenSSH/:/mnt/c/Users/mirab/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/mirab/AppData/Local/Programs/Microsoft VS Code/bin:/snap/bin
+DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1002/bus
+VSCODE_NLS_CONFIG={"userLocale":"en","osLocale":"en","resolvedLanguage":"en","defaultMessagesFile":"/home/mirabelle2025/.vscode-server/bin/fee1edb8d6d72a0ddff41e5f71a671c23ed924b9/out/nls.messages.json","locale":"en","availableLanguages":{}}
+HOSTTYPE=x86_64
+PULSE_SERVER=unix:/mnt/wslg/PulseServer
+WT_PROFILE_ID={61c54bbd-c2c6-5271-96e7-009a87ff44bf}
+VSCODE_HANDLES_UNCAUGHT_ERRORS=true
+VSCODE_IPC_HOOK_CLI=/run/user/1002/vscode-ipc-a759b0e7-9d4e-4ab6-b0f1-0c45ab31041d.sock
+_=/usr/bin/env
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># Extract saved variables
+</span><span class="n">source</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">variables</span><span class="p">.</span><span class="n">sh</span>
+
+<span class="n">cd</span> <span class="err">$</span><span class="n">project</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"show the secrets of .git config file"</span>
+<span class="n">cd</span> <span class="p">.</span><span class="n">git</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="n">config</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"look at config file"</span>
+<span class="n">cat</span> <span class="n">config</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>show the secrets of .git config file
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 306 Aug 29 09:53 config
+
+look at config file
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "origin"]
+	url = https://github.com/mirabelle2025/mirabellea_2025.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch "main"]
+	remote = origin
+	merge = refs/heads/main
+	vscode-merge-base = origin/main
+</code></pre></div></div>
+
+<h2 id="advanced-shell-project">Advanced Shell project</h2>
+
+<blockquote>
+  <p>This example was requested by a student (Jun Lim, CSA). The request was to make a Jupyter file using bash; I adapted the request to markdown. This type of thought will have great extrapolation to coding and possibilities of using Lists, Arrays, or APIs to build user interfaces. JavaScript is a language where building HTML is very common.</p>
+</blockquote>
+
+<blockquote>
+  <p>To get more interesting output from the terminal, this will require using something like mdless (https://github.com/ttscoff/mdless). This enables seeing markdown in rendered format.</p>
+  <ul>
+    <li>On Desktop <a href="https://www.macports.org/install.php">Install PKG from MacPorts</a></li>
+    <li>In Terminal on MacOS
+      <ul>
+        <li><a href="https://ports.macports.org/port/ncurses/">Install ncurses</a></li>
+        <li><code class="language-plaintext highlighter-rouge">gem install mdless</code></li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>Output of the example is much nicer in “Jupyter”</p>
+</blockquote>
+
+<p>This is starting the process of documentation.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># This example has an error in VSCode; it runs best on Jupyter
+</span><span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span>
+
+<span class="nb">file</span><span class="o">=</span><span class="s">"sample.md"</span>
+<span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">f</span> <span class="s">"$file"</span> <span class="p">];</span> <span class="n">then</span>
+    <span class="n">rm</span> <span class="err">$</span><span class="nb">file</span>
+<span class="n">fi</span>
+
+<span class="c1"># Create a markdown file using tee and here document (&lt;&lt;EOF)
+</span><span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="err">$</span><span class="nb">file</span> <span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span>
+<span class="c1"># Show Generated Markdown
+</span><span class="n">This</span> <span class="n">introductory</span> <span class="n">paragraph</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">title</span> <span class="n">above</span> <span class="n">are</span> <span class="n">generated</span> <span class="n">using</span> <span class="n">tee</span> <span class="k">with</span> <span class="n">the</span> <span class="n">standard</span> <span class="nb">input</span> <span class="p">(</span><span class="o">&lt;&lt;</span><span class="p">)</span> <span class="n">redirection</span> <span class="n">operator</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">This</span> <span class="n">bulleted</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">still</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tee</span> <span class="n">body</span><span class="p">.</span>
+<span class="n">EOF</span>
+
+<span class="c1"># Append additional lines to the markdown file using echo and redirection (&gt;&gt;)
+</span><span class="n">echo</span> <span class="s">"- This bulleted element and lines below are generated using echo with standard output (&gt;&gt;) redirection operator."</span> <span class="o">&gt;&gt;</span> <span class="err">$</span><span class="nb">file</span>
+<span class="n">echo</span> <span class="s">"- The list definition, as is, is using space to separate lines. Thus the use of commas and hyphens in output."</span> <span class="o">&gt;&gt;</span> <span class="err">$</span><span class="nb">file</span>
+
+<span class="c1"># Define an array of actions and their descriptions
+</span><span class="n">actions</span><span class="o">=</span><span class="p">(</span><span class="s">"ls,list-directory"</span> <span class="s">"cd,change-directory"</span> <span class="s">"pwd,present-working-directory"</span> <span class="s">"if-then-fi,test-condition"</span> <span class="s">"env,bash-environment-variables"</span> <span class="s">"cat,view-file-contents"</span> <span class="s">"tee,write-to-output"</span> <span class="s">"echo,display-content-of-string"</span> <span class="s">"echo_text_&gt;\$file,write-content-to-file"</span> <span class="s">"echo_text_&gt;&gt;\$file,append-content-to-file"</span><span class="p">)</span>
+
+<span class="c1"># Loop through the actions array and append each action to the markdown file
+</span><span class="k">for</span> <span class="n">action</span> <span class="ow">in</span> <span class="err">$</span><span class="p">{</span><span class="n">actions</span><span class="p">[</span><span class="o">@</span><span class="p">]};</span> <span class="n">do</span>
+  <span class="n">action</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">action</span><span class="o">//-/</span> <span class="p">}</span>  <span class="c1"># Convert dash to space
+</span>  <span class="n">action</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">action</span><span class="o">//</span><span class="p">,</span><span class="o">/</span><span class="p">:</span> <span class="p">}</span> <span class="c1"># Convert comma to colon
+</span>  <span class="n">action</span><span class="o">=</span><span class="err">$</span><span class="p">{</span><span class="n">action</span><span class="o">//</span><span class="n">_text_</span><span class="o">/</span> \<span class="s">"sample text</span><span class="se">\"</span><span class="s"> } # Convert _text_ to "</span><span class="n">sample</span> <span class="n">text</span><span class="s">", note escape character \ to avoid "" having meaning
+  echo "</span>    <span class="o">-</span> <span class="err">$</span><span class="p">{</span><span class="n">action</span><span class="o">//-/</span> <span class="p">}</span><span class="s">" &gt;&gt; $file  # Append action to file
+done
+
+echo ""
+echo "</span><span class="n">File</span> <span class="n">listing</span> <span class="ow">and</span> <span class="n">status</span><span class="s">"
+ls -l $file # List file details
+wc $file   # Show word count
+mdless $file  # Render markdown from terminal (requires mdless installation)
+
+rm $file  # Clean up temporary file
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>File listing and status
+-rw-r--r-- 1 mirabelle2025 mirabelle2025 808 Sep  3 10:27 sample.md
+ 15 132 808 sample.md
+
+
+Config file saved to /home/mirabelle2025/.config/mdless/config.yml
+
+
+
+
+[0;37m[0;1;90;47mShow Generated Markdown [0;2;30;47m======================================================[0;37m
+
+[0;37mThis introductory paragraph and this line and the title above are generated using tee with the standard input (&lt;&lt;) redirection operator.[0;37m
+
+ [0;1;91m* [0;97mThis bulleted element is still part of the tee body.[0;37m
+ [0;1;91m* [0;97mThis bulleted element and lines below are generated using echo with standard output (&gt;&gt;) redirection operator.[0;37m
+ [0;1;91m* [0;97mThe list definition, as is, is using space to separate lines. Thus the use of commas and hyphens in output.
+   [0;1;91m* [0;97mls: list directory[0;97m
+   [0;1;91m* [0;97mcd: change directory[0;97m
+   [0;1;91m* [0;97mpwd: present working directory[0;97m
+   [0;1;91m* [0;97mif then fi: test condition[0;97m
+   [0;1;91m* [0;97menv: bash environment variables[0;97m
+   [0;1;91m* [0;97mcat: view file contents[0;97m
+   [0;1;91m* [0;97mtee: write to output[0;97m
+   [0;1;91m* [0;97mecho: display content of string[0;97m
+   [0;1;91m* [0;97mecho "sample text" &gt;$file: write content to file[0;97m
+   [0;1;91m* [0;97mecho "sample text" &gt;&gt;$file: append content to file[0;97m[0;37m
+
+[0m
+</code></pre></div></div>
+
+<h2 id="display-shell-commands-help-using-man">Display Shell commands help using <code class="language-plaintext highlighter-rouge">man</code></h2>
+
+<blockquote>
+  <p>The previous example used a markdown file to store a list of actions and their descriptions. This example uses the <code class="language-plaintext highlighter-rouge">man</code> command to generate a markdown file with descriptions of the commands. The markdown file is then displayed using <code class="language-plaintext highlighter-rouge">mdless</code>.</p>
+</blockquote>
+
+<p>In coding, we should try to get data from the content creators instead of creating it on our own. This approach has several benefits:</p>
+<ul>
+  <li><strong>Accuracy</strong>: Descriptions from <code class="language-plaintext highlighter-rouge">man</code> pages are authoritative and accurate, as they come directly from the documentation provided by the command’s developers.</li>
+  <li><strong>Consistency</strong>: Automatically generating descriptions ensures consistency in formatting and terminology.</li>
+  <li><strong>Efficiency</strong>: It saves time and effort, especially when dealing with a large number of commands.</li>
+  <li><strong>Up-to-date Information</strong>: <code class="language-plaintext highlighter-rouge">man</code> pages are regularly updated with the latest information, ensuring that the descriptions are current.</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">%%</span><span class="n">script</span> <span class="n">bash</span>
+
+<span class="c1"># This example has an error in VSCode; it runs best on Jupyter
+</span><span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span>
+
+<span class="nb">file</span><span class="o">=</span><span class="s">"sample.md"</span>
+<span class="k">if</span> <span class="p">[</span> <span class="o">-</span><span class="n">f</span> <span class="s">"$file"</span> <span class="p">];</span> <span class="n">then</span>
+    <span class="n">rm</span> <span class="err">$</span><span class="nb">file</span>
+<span class="n">fi</span>
+
+<span class="c1"># Set locale to C to avoid locale-related errors
+</span><span class="n">export</span> <span class="n">LC_ALL</span><span class="o">=</span><span class="n">C</span>
+
+<span class="c1"># Create a markdown file using tee and here document (&lt;&lt;EOF)
+</span><span class="n">tee</span> <span class="o">-</span><span class="n">a</span> <span class="err">$</span><span class="nb">file</span> <span class="o">&gt;/</span><span class="n">dev</span><span class="o">/</span><span class="n">null</span> <span class="o">&lt;&lt;</span><span class="n">EOF</span>
+<span class="c1"># Show Generated Markdown
+</span><span class="n">This</span> <span class="n">introductory</span> <span class="n">paragraph</span> <span class="ow">and</span> <span class="n">this</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">title</span> <span class="n">above</span> <span class="n">are</span> <span class="n">generated</span> <span class="n">using</span> <span class="n">tee</span> <span class="k">with</span> <span class="n">the</span> <span class="n">standard</span> <span class="nb">input</span> <span class="p">(</span><span class="o">&lt;&lt;</span><span class="p">)</span> <span class="n">redirection</span> <span class="n">operator</span><span class="p">.</span>
+<span class="o">-</span> <span class="n">This</span> <span class="n">bulleted</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">still</span> <span class="n">part</span> <span class="n">of</span> <span class="n">the</span> <span class="n">tee</span> <span class="n">body</span><span class="p">.</span>
+<span class="n">EOF</span>
+
+<span class="c1"># Append additional lines to the markdown file using echo and redirection (&gt;&gt;)
+</span><span class="n">echo</span> <span class="s">"- This bulleted element and lines below are generated using echo with standard output (&gt;&gt;) redirection operator."</span> <span class="o">&gt;&gt;</span> <span class="err">$</span><span class="nb">file</span>
+<span class="n">echo</span> <span class="s">"- The list definition, as is, is using space to separate lines. Thus the use of commas and hyphens in output."</span> <span class="o">&gt;&gt;</span> <span class="err">$</span><span class="nb">file</span>
+
+<span class="c1"># Define an array of commands
+</span><span class="n">commands</span><span class="o">=</span><span class="p">(</span><span class="s">"ls"</span> <span class="s">"cat"</span> <span class="s">"tail"</span> <span class="s">"pwd"</span> <span class="s">"env"</span> <span class="s">"grep"</span> <span class="s">"awk"</span> <span class="s">"sed"</span> <span class="s">"curl"</span> <span class="s">"wget"</span><span class="p">)</span>
+
+<span class="c1"># Loop through the commands array and append each command description to the markdown file
+</span><span class="k">for</span> <span class="n">cmd</span> <span class="ow">in</span> <span class="err">$</span><span class="p">{</span><span class="n">commands</span><span class="p">[</span><span class="o">@</span><span class="p">]};</span> <span class="n">do</span>
+  <span class="n">description</span><span class="o">=</span><span class="err">$</span><span class="p">(</span><span class="n">man</span> <span class="err">$</span><span class="n">cmd</span> <span class="o">|</span> <span class="n">col</span> <span class="o">-</span><span class="n">b</span> <span class="o">|</span> <span class="n">awk</span> <span class="s">'/^NAME/{getline; print}'</span><span class="p">)</span>
+  <span class="n">echo</span> <span class="s">"    - $description"</span> <span class="o">&gt;&gt;</span> <span class="err">$</span><span class="nb">file</span>
+<span class="n">done</span>
+
+<span class="n">echo</span> <span class="s">""</span>
+<span class="n">echo</span> <span class="s">"File listing and status"</span>
+<span class="n">ls</span> <span class="o">-</span><span class="n">l</span> <span class="err">$</span><span class="nb">file</span> <span class="c1"># List file details
+</span><span class="n">wc</span> <span class="err">$</span><span class="nb">file</span>   <span class="c1"># Show word count
+</span><span class="n">mdless</span> <span class="err">$</span><span class="nb">file</span>  <span class="c1"># Render markdown from terminal (requires mdless installation)
+</span>
+<span class="n">rm</span> <span class="err">$</span><span class="nb">file</span>  <span class="c1"># Clean up temporary file
+</span></code></pre></div></div>
+
+  </div><!-- from https://github.com/utterance/utterances -->
+<script src="https://utteranc.es/client.js"
+        repo="mirabelle2025/mirabellea_2025"
+        issue-term="title"
+        label="blogpost-comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script><a class="u-url" href="/mirabellea_2025/devops/tools/verify" hidden></a>
+</article>
+
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/mirabellea_2025/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://localhost:4100/mirabellea_2025/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Class of 2025</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://x.com/NighthawkCoding/" target="_blank" title="x">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#x"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/@nighthawkcodingsociety2868" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+</html>

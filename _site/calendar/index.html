@@ -1,0 +1,199 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Calendar | Nighthawk Pages</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Calendar" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A calender for daily tasks in CompSci." />
+<meta property="og:description" content="A calender for daily tasks in CompSci." />
+<link rel="canonical" href="http://localhost:4100/mirabellea_2025/calendar/" />
+<meta property="og:url" content="http://localhost:4100/mirabellea_2025/calendar/" />
+<meta property="og:site_name" content="Nighthawk Pages" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Calendar" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"A calender for daily tasks in CompSci.","headline":"Calendar","url":"http://localhost:4100/mirabellea_2025/calendar/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/mirabellea_2025/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/mirabellea_2025/feed.xml" title="Nighthawk Pages" />
+
+<!-- Include favicons --><link rel="shortcut icon" type="image/x-icon" href="/mirabellea_2025/images/favicon.ico"><!-- Include Primer CSS for styling -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Include Hypothesis annotations script if annotations are enabled --><!-- Include KaTeX and MathJax for rendering mathematical expressions if use_math is enabled -->
+
+
+<script>
+/**
+ * Function to wrap images with a figure and caption if they have a title attribute.
+ * This function is executed when the window loads.
+ */
+function wrap_img(fn) {
+    // Check if the document is already loaded
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        // Select all images within elements with the class 'post'
+        var elements = document.querySelectorAll(".post img");
+        // Iterate over each image element
+        Array.prototype.forEach.call(elements, function(el, i) {
+            // Check if the image has a title attribute and is not an emoji
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                // Create a figcaption element for the caption
+                const caption = document.createElement('figcaption');
+                // Create a text node with the title attribute value
+                var node = document.createTextNode(el.getAttribute("title"));
+                // Append the text node to the figcaption element
+                caption.appendChild(node);
+                // Create a figure element to wrap the image and caption
+                const wrapper = document.createElement('figure');
+                // Add the 'image' class to the figure element
+                wrapper.className = 'image';
+                // Insert the figure element before the image
+                el.parentNode.insertBefore(wrapper, el);
+                // Remove the image from its original position
+                el.parentNode.removeChild(el);
+                // Append the image and caption to the figure element
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else {
+        // If the document is not loaded, add an event listener to execute the function when it is
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+// Execute the wrap_img function when the window loads
+window.onload = wrap_img;
+</script>
+
+<script>
+/**
+ * Function to add a link icon to anchor tags with the class 'anchor-link'.
+ * This function is executed when the DOM content is loaded.
+ */
+document.addEventListener("DOMContentLoaded", function(){
+    // Select all elements with the class 'anchor-link'
+    var elem = document.querySelectorAll(".anchor-link");
+    // Iterate over each element and set its inner HTML to a Font Awesome link icon
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+});
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/mirabellea_2025/">Nighthawk Pages</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/mirabellea_2025/blogs/">Blogs</a><a class="page-link" href="/mirabellea_2025/search/">Search</a><a class="page-link" href="/mirabellea_2025/about/">About Mirabelle</a><a class="page-link" href="/mirabellea_2025/README4YML.html">Readme</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post">
+
+  <h2 class="post-title">Calendar</h2>
+ 
+  <div class="post-content">
+    <table>
+    <tr>
+        <td><img src="/mirabellea_2025/images/logo.png" height="60" title="Tools" alt="" /></td>
+        <td><a href="/mirabellea_2025/">Home</a></td>
+        <td><a href="/mirabellea_2025/snake">Snake</a></td>
+        <td><a href="/mirabellea_2025/ideas">Ideas</a></td>
+        <td><a href="/mirabellea_2025/calendar">Events</a></td>
+        <td><a href="/mirabellea_2025/calculator">Calculator</a></td>
+    </tr>
+</table>
+<div style="display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px;">
+
+  <!-- First Quadrant (empty or you can add content here) -->
+  <div style="border: 1px solid #ccc; padding: 10px;">
+    <!-- Add content or leave blank -->
+  </div>
+
+  <!-- Second Quadrant with Google Calendar -->
+  <div style="border: 1px solid #ccc; padding: 10px;">
+    <iframe src="https://calendar.google.com/calendar/embed?src=mirabelle.soccer@gmail.com&amp;ctz=America/Los_Angeles" style="border: 0; width: 100%; height: 100%; frameborder: 0; scrolling: no;"></iframe>
+  </div>
+
+  <!-- Third Quadrant with Spotify Playlist -->
+  <div style="border: 1px solid #ccc; padding: 10px;">
+    <iframe style="border-radius:12px; width: 100%; height: 100%;" src="https://open.spotify.com/embed/playlist/0VcUuytc79fAR2M93AtfGL?utm_source=generator" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+
+  <!-- Fourth Quadrant (empty or you can add content here) -->
+  <div style="border: 1px solid #ccc; padding: 10px;">
+    <!-- Add content or leave blank -->
+  </div>
+
+</div>
+
+  </div>
+
+</article>
+
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/mirabellea_2025/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://localhost:4100/mirabellea_2025/feed.xml">
+            <svg class="svg-icon orange">
+              <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#rss"></use>
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Class of 2025</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"><li>
+  <a rel="me" href="https://github.com/nighthawkcoders" target="_blank" title="github">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#github"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://x.com/NighthawkCoding/" target="_blank" title="x">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#x"></use>
+    </svg>
+  </a>
+</li>
+<li>
+  <a rel="me" href="https://www.youtube.com/@nighthawkcodingsociety2868" target="_blank" title="youtube">
+    <svg class="svg-icon grey">
+      <use xlink:href="/mirabellea_2025/assets/minima-social-icons.svg#youtube"></use>
+    </svg>
+  </a>
+</li>
+</ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+</html>
