@@ -38,9 +38,6 @@ jobs:
       
       - name: Verify build output
         run: ls -la ./_site  # ✅ Debugging step
-
-      - name: Force Jekyll Build
-        run: JEKYLL_ENV=production bundle exec jekyll build --trace
       
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
