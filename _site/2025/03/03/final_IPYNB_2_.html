@@ -149,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function(){
       </time>• <span class="read-time" title="Estimated read time">
     
     
-      9 min read
+      10 min read
     
 </span>
     </p>
@@ -178,6 +178,19 @@ document.addEventListener("DOMContentLoaded", function(){
 |Functionality Demonstration| User inputs, item is clicked, data is added into SQLite database (full-stack connection from frontend to backend)          |
 | Output | link to page of typed in item appears and points are added when item is clicked        |</p>
 
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Feature Code Blocks
+</span><span class="o">**</span><span class="n">List</span> <span class="n">requests</span><span class="p">.</span><span class="o">**</span> <span class="n">Use</span> <span class="n">of</span> <span class="nb">list</span><span class="p">,</span> <span class="n">dictionaries</span> <span class="ow">and</span> <span class="n">database</span><span class="p">.</span> <span class="n">Code</span> <span class="n">descriptions</span> <span class="n">of</span> <span class="n">area</span> <span class="n">where</span> <span class="n">you</span> <span class="n">work</span> <span class="k">with</span> <span class="nb">list</span> <span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="ow">and</span> <span class="n">dictionaries</span> <span class="p">(</span><span class="n">columns</span><span class="p">)</span> <span class="n">of</span> <span class="n">the</span> <span class="n">database</span><span class="p">.</span>
+<span class="k">with</span> <span class="n">app</span><span class="p">.</span><span class="n">app_context</span><span class="p">():</span>
+<span class="s">"""Create database and tables"""</span>
+<span class="n">db</span><span class="p">.</span><span class="n">create_all</span><span class="p">()</span>
+<span class="s">"""Tester data for table"""</span>
+<span class="n">nigerias</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">Nigeria</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">'Kilimanjaro'</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s">'It was ok! The enviornment was great though.'</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'announcement'</span><span class="p">},</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+    <span class="n">Nigeria</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">'McFestine'</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s">'Enjoyed the diverse food options!'</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'announcement'</span><span class="p">},</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+    <span class="n">Nigeria</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s">'Unity'</span><span class="p">,</span> <span class="n">comment</span><span class="o">=</span><span class="s">'Amazing staff, liked the food!'</span><span class="p">,</span> <span class="n">content</span><span class="o">=</span><span class="p">{</span><span class="s">'type'</span><span class="p">:</span> <span class="s">'announcement'</span><span class="p">},</span> <span class="n">user_id</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">group_id</span><span class="o">=</span><span class="mi">3</span><span class="p">),</span>
+<span class="p">]</span>
+</code></pre></div></div>
+
 <h1 id="ntm-review-of-our-team-and-others">N@TM Review of our team and Others</h1>
 <p><strong>OurWebsite’s Presentation Feedback</strong>
 <img src="https://github.com/user-attachments/assets/9bd4d1a5-3998-4d4a-b2e5-991f73a57d0b" alt="Image" /></p>
@@ -186,7 +199,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
 <p><img src="https://github.com/user-attachments/assets/a6965877-a759-4e67-98c5-775af74e2e8d" alt="Image" />
 <strong>Improve:</strong> People recommended to add more features, as some of them may seem repetitive or not as intereseting. They also gave critisim on the overall presentation, and said that it would’ve been done more smoothly. This will defintley help for when we make the College Board video, and the next step would be to address these concerns.
-<strong>Keep:</strong> People liked the organization of our website, and thought some of our features were fun to play aroundn with. The color scheme was also complemented, people said it suits the theme of our website.</p>
+<strong>Keep:</strong> People liked the organization of our website, and thought some of our features were fun to play aroundn with. The color scheme was also complemented, people said it suits the theme of our website.
+<img width="314" alt="Image" src="https://github.com/user-attachments/assets/dfc96050-590b-4c80-9bb2-bc4d011ef275" /></p>
 
 <h1 id="mcq-reflection-">MCQ Reflection <br /></h1>
 <p><strong>Overall Grade</strong> 56/67!<br /> <a href="https://github.com/user-attachments/assets/196a64f4-fb9f-4476-93fa-7a046b657a39">Image</a>
