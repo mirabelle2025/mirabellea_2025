@@ -12,15 +12,15 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="College Board requirements" />
 <meta property="og:description" content="College Board requirements" />
-<link rel="canonical" href="http://localhost:4100/mirabellea_2025/2025/03/10/ppr_cpt_IPYNB_2_.html" />
-<meta property="og:url" content="http://localhost:4100/mirabellea_2025/2025/03/10/ppr_cpt_IPYNB_2_.html" />
+<link rel="canonical" href="http://localhost:4100/mirabellea_2025/2099/01/01/ppr_cpt_IPYNB_2_.html" />
+<meta property="og:url" content="http://localhost:4100/mirabellea_2025/2099/01/01/ppr_cpt_IPYNB_2_.html" />
 <meta property="og:site_name" content="Nighthawk Pages" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2025-03-10T00:00:00-07:00" />
+<meta property="article:published_time" content="2099-01-01T00:00:00-08:00" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="2025 Trimester 3 CPT and PPR requirements" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-03-10T00:00:00-07:00","datePublished":"2025-03-10T00:00:00-07:00","description":"College Board requirements","headline":"2025 Trimester 3 CPT and PPR requirements","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/mirabellea_2025/2025/03/10/ppr_cpt_IPYNB_2_.html"},"url":"http://localhost:4100/mirabellea_2025/2025/03/10/ppr_cpt_IPYNB_2_.html"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2099-01-01T00:00:00-08:00","datePublished":"2099-01-01T00:00:00-08:00","description":"College Board requirements","headline":"2025 Trimester 3 CPT and PPR requirements","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/mirabellea_2025/2099/01/01/ppr_cpt_IPYNB_2_.html"},"url":"http://localhost:4100/mirabellea_2025/2099/01/01/ppr_cpt_IPYNB_2_.html"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
   <link rel="stylesheet" href="/mirabellea_2025/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/mirabellea_2025/feed.xml" title="Nighthawk Pages" />
@@ -120,12 +120,12 @@ document.addEventListener("DOMContentLoaded", function(){
     <div class="wrapper">
       <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
 
-  <header class="post-header"><h1 class="post-title p-name" itemprop="name headline">2025 Trimester 3 CPT and PPR requirements</h1><p class="page-description">College Board requirements</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2025-03-10T00:00:00-07:00" itemprop="datePublished">
-        Mar 10, 2025
+  <header class="post-header"><h1 class="post-title p-name" itemprop="name headline">2025 Trimester 3 CPT and PPR requirements</h1><p class="page-description">College Board requirements</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2099-01-01T00:00:00-08:00" itemprop="datePublished">
+        Jan 1, 2099
       </time>• <span class="read-time" title="Estimated read time">
     
     
-      3 min read
+      4 min read
     
 </span>
     </p>
@@ -230,6 +230,80 @@ document.addEventListener("DOMContentLoaded", function(){
   <li>The <code class="language-plaintext highlighter-rouge">Facts</code> class (from <code class="language-plaintext highlighter-rouge">model/factsbase.py</code>) abstracts the database structure.</li>
   <li>The SQLAlchemy ORM handles data persistence.</li>
 </ul>
+
+<h4 style="color: darkblue;">1.Input from User</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>  <span class="c1"># The user sends input as a JSON object.
+</span><span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">)</span>
+<span class="n">fact</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'fact'</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<h4 style="color: darkblue;">2.Use of list to Represent Data</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">facts</span> <span class="o">=</span> <span class="n">Facts</span><span class="p">.</span><span class="n">query</span><span class="p">.</span><span class="nb">all</span><span class="p">()</span>  <span class="c1"># Querying all facts from the database
+</span><span class="n">result</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span>
+        <span class="s">'id'</span><span class="p">:</span> <span class="n">fact</span><span class="p">.</span><span class="nb">id</span><span class="p">,</span>
+        <span class="s">'name'</span><span class="p">:</span> <span class="n">fact</span><span class="p">.</span><span class="n">_name</span><span class="p">,</span>
+        <span class="s">'fact'</span><span class="p">:</span> <span class="n">fact</span><span class="p">.</span><span class="n">_fact</span><span class="p">,</span>
+    <span class="p">}</span>
+    <span class="k">for</span> <span class="n">fact</span> <span class="ow">in</span> <span class="n">facts</span>
+<span class="p">]</span>
+
+</code></pre></div></div>
+
+<h4 style="color: darkblue;">3.Student-Dveloped Procedure</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_user</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">)</span>
+    <span class="n">fact</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'fact'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">fact</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'error'</span><span class="p">:</span> <span class="s">'Missing data'</span><span class="p">}),</span> <span class="mi">400</span>
+
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">Facts</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">fact</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'message'</span><span class="p">:</span> <span class="s">'Fact added successfully'</span><span class="p">}),</span> <span class="mi">201</span>
+    
+
+</code></pre></div></div>
+
+<h4 style="color: darkblue;">4.Algorithm with sequencing, selction, and iteration</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">add_user</span><span class="p">():</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">request</span><span class="p">.</span><span class="n">get_json</span><span class="p">()</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'name'</span><span class="p">)</span>
+    <span class="n">fact</span> <span class="o">=</span> <span class="n">data</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'fact'</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="n">name</span><span class="p">,</span> <span class="n">fact</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'error'</span><span class="p">:</span> <span class="s">'Missing data'</span><span class="p">}),</span> <span class="mi">400</span>
+
+    <span class="n">new_user</span> <span class="o">=</span> <span class="n">Facts</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">fact</span><span class="o">=</span><span class="n">fact</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_user</span><span class="p">)</span>
+    <span class="n">db</span><span class="p">.</span><span class="n">session</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'message'</span><span class="p">:</span> <span class="s">'Fact added successfully'</span><span class="p">}),</span> <span class="mi">201</span>
+    
+
+</code></pre></div></div>
+
+<h4 style="color: darkblue;">5.Calls to Procedure</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">@</span><span class="n">userfacts</span><span class="p">.</span><span class="n">route</span><span class="p">(</span><span class="s">'/api/userfacts'</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s">'POST'</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">add_user_route</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">add_user</span><span class="p">()</span>  <span class="c1"># Calling the procedure defined above
+</span>    
+</code></pre></div></div>
+
+<h4 style="color: darkblue;">6. Output Based on Input</h4>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">return</span> <span class="n">jsonify</span><span class="p">({</span><span class="s">'message'</span><span class="p">:</span> <span class="s">'Fact added successfully'</span><span class="p">}),</span> <span class="mi">201</span>
+</code></pre></div></div>
 
 <h1 style="color: black;">Component B: Video</h1>
 
@@ -350,7 +424,7 @@ document.addEventListener("DOMContentLoaded", function(){
         theme="github-light"
         crossorigin="anonymous"
         async>
-</script><a class="u-url" href="/mirabellea_2025/2025/03/10/ppr_cpt_IPYNB_2_.html" hidden></a>
+</script><a class="u-url" href="/mirabellea_2025/2099/01/01/ppr_cpt_IPYNB_2_.html" hidden></a>
 </article>
 
     </div>
