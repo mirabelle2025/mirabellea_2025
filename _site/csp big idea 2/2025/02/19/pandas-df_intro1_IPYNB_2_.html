@@ -1,0 +1,666 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Frames Pandas Intro 1 | Nighthawk Pages</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Data Frames Pandas Intro 1" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Data connections, trends, and correlation. Pandas is introduced as it could be valuable for CPT and PBL." />
+<meta property="og:description" content="Data connections, trends, and correlation. Pandas is introduced as it could be valuable for CPT and PBL." />
+<link rel="canonical" href="http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro1_IPYNB_2_.html" />
+<meta property="og:url" content="http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro1_IPYNB_2_.html" />
+<meta property="og:site_name" content="Nighthawk Pages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-19T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Frames Pandas Intro 1" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-02-19T00:00:00-08:00","datePublished":"2025-02-19T00:00:00-08:00","description":"Data connections, trends, and correlation. Pandas is introduced as it could be valuable for CPT and PBL.","headline":"Data Frames Pandas Intro 1","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro1_IPYNB_2_.html"},"url":"http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro1_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+  <link rel="stylesheet" href="/mirabellea_2025/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/mirabellea_2025/feed.xml" title="Nighthawk Pages" />
+
+<!-- Include favicons --><link rel="shortcut icon" type="image/x-icon" href="/mirabellea_2025/images/favicon.ico"><!-- Include Primer CSS for styling -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Include Hypothesis annotations script if annotations are enabled --><!-- Include KaTeX and MathJax for rendering mathematical expressions if use_math is enabled -->
+
+
+<script>
+/**
+ * Function to wrap images with a figure and caption if they have a title attribute.
+ * This function is executed when the window loads.
+ */
+function wrap_img(fn) {
+    // Check if the document is already loaded
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        // Select all images within elements with the class 'post'
+        var elements = document.querySelectorAll(".post img");
+        // Iterate over each image element
+        Array.prototype.forEach.call(elements, function(el, i) {
+            // Check if the image has a title attribute and is not an emoji
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                // Create a figcaption element for the caption
+                const caption = document.createElement('figcaption');
+                // Create a text node with the title attribute value
+                var node = document.createTextNode(el.getAttribute("title"));
+                // Append the text node to the figcaption element
+                caption.appendChild(node);
+                // Create a figure element to wrap the image and caption
+                const wrapper = document.createElement('figure');
+                // Add the 'image' class to the figure element
+                wrapper.className = 'image';
+                // Insert the figure element before the image
+                el.parentNode.insertBefore(wrapper, el);
+                // Remove the image from its original position
+                el.parentNode.removeChild(el);
+                // Append the image and caption to the figure element
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else {
+        // If the document is not loaded, add an event listener to execute the function when it is
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+// Execute the wrap_img function when the window loads
+window.onload = wrap_img;
+</script>
+
+<script>
+/**
+ * Function to add a link icon to anchor tags with the class 'anchor-link'.
+ * This function is executed when the DOM content is loaded.
+ */
+document.addEventListener("DOMContentLoaded", function(){
+    // Select all elements with the class 'anchor-link'
+    var elem = document.querySelectorAll(".anchor-link");
+    // Iterate over each element and set its inner HTML to a Font Awesome link icon
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+});
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/mirabellea_2025/">Nighthawk Pages</a>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon fas fa-bars fa-lg"></span>
+        </label>
+
+        <div class="drawer-container">
+          <div class="drawer">
+  <a class="nav-item" href="/mirabellea_2025/blogs/">Blogs</a>
+  <a class="nav-item" href="/mirabellea_2025/search/">Search</a>
+  <a class="nav-item" href="/mirabellea_2025/about/">About Mirabelle</a>
+  <a class="nav-item" href="/mirabellea_2025/README4YML.html">Readme</a>
+          </div>
+        </div>
+        <div class="slab">
+  <a class="nav-item" href="/mirabellea_2025/blogs/">Blogs</a>
+  <a class="nav-item" href="/mirabellea_2025/search/">Search</a>
+  <a class="nav-item" href="/mirabellea_2025/about/">About Mirabelle</a>
+  <a class="nav-item" href="/mirabellea_2025/README4YML.html">Readme</a>
+        </div>
+      </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header"><h1 class="post-title p-name" itemprop="name headline">Data Frames | Pandas | Intro 1</h1><p class="page-description">Data connections, trends, and correlation.  Pandas is introduced as it could be valuable for CPT and PBL.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2025-02-19T00:00:00-08:00" itemprop="datePublished">
+        Feb 19, 2025
+      </time>• <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span>
+    </p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/mirabellea_2025/categories/cte#CSP Big Idea 2">CSP Big Idea 2</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><ul><li><a href="#files-to-get">Files To Get</a></li><li><a href="#pandas-and-dataframes">Pandas and DataFrames</a></li><li><a href="#cleaning-data">Cleaning Data</a></li><li><a href="#extracting-info">Extracting Info</a><ul><li><a href="#dataframe-extract-column">DataFrame Extract Column</a></li><li><a href="#dataframe-sort">DataFrame Sort</a></li><li><a href="#dataframe-selection-or-filter">DataFrame Selection or Filter</a></li><li><a href="#dataframe-selection-max-and-min">DataFrame Selection Max and Min</a></li></ul></li><li><a href="#create-your-own-dataframe">Create your own DataFrame</a><ul><li><a href="#python-dictionary-to-pandas-dataframe">Python Dictionary to Pandas DataFrame</a></li><li><a href="#examine-dataframe-rows">Examine DataFrame Rows</a></li><li><a href="#pandas-dataframe-information">Pandas DataFrame Information</a></li></ul></li><li><a href="#example-of-larger-data-set">Example of larger data set</a></li><li><a href="#apis-are-a-source-for-panda-data">APIs are a Source for Panda Data</a></li><li><a href="#hacks">Hacks</a></li></ul><h1 id="files-to-get">Files To Get</h1>
+
+<ol>
+  <li>
+    <p>Use wget or drag-and-drop the <strong>_notebooks/CSP/big-ideas/big-idea-2</strong> folder for this and other ipynb on pandas.</p>
+  </li>
+  <li>
+    <p>Use wget or drag-and-drop, in a subfolder named <strong>data</strong> in your <strong>_notebookx</strong> to grab data files.</p>
+  </li>
+</ol>
+
+<ul>
+  <li>data.csv</li>
+  <li>grade.json</li>
+</ul>
+
+<ol>
+  <li>Use wget or drag-and-drop, then copy image file and place into subfolder named <strong>data_structures</strong> in your <strong>images</strong> folder.  Grab the entire folder.</li>
+</ol>
+
+<h1 id="pandas-and-dataframes">Pandas and DataFrames</h1>
+<blockquote>
+  <p>In this lesson we will be exploring data analysis using Pandas.</p>
+</blockquote>
+
+<ul>
+  <li>College Board talks about ideas like
+    <ul>
+      <li>Tools. “the ability to process data depends on users capabilities and their tools”</li>
+      <li>Combining Data.  “combine county data sets”</li>
+      <li>Status on Data”determining the artist with the greatest attendance during a particular month”</li>
+      <li>Data poses challenge. “the need to clean data”, “incomplete data”</li>
+    </ul>
+  </li>
+  <li>
+    <p><a href="https://pandas.pydata.org/docs/getting_started/index.html">From Pandas Overview</a> – When working with tabular data, such as data stored in spreadsheets or databases, pandas is the right tool for you. pandas will help you to explore, clean, and process your data. In pandas, a data table is called a DataFrame.</p>
+  </li>
+  <li>DataFrame is a 2-dimensional labeled data structure with columns of potentially different types. It is similar to:
+    <ul>
+      <li>a spreadsheet</li>
+      <li>an SQL table</li>
+      <li>a JSON object with rows [] with nexted key-values {}</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/mirabellea_2025/images/data_structures/pandas_dataframe.png" alt="DataFrame" /></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># uncomment the following line to install the pandas library
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span> 
+
+<span class="s">'''Pandas is used to gather data sets through its DataFrames implementation'''</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Requirement already satisfied: pandas in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (2.2.3)
+Requirement already satisfied: numpy&gt;=1.26.0 in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (from pandas) (2.2.3)
+Requirement already satisfied: python-dateutil&gt;=2.8.2 in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (from pandas) (2.9.0.post0)
+Requirement already satisfied: pytz&gt;=2020.1 in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (from pandas) (2025.1)
+Requirement already satisfied: tzdata&gt;=2022.7 in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (from pandas) (2025.1)
+Requirement already satisfied: six&gt;=1.5 in /home/mirabelle2025/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages (from python-dateutil&gt;=2.8.2-&gt;pandas) (1.17.0)
+</code></pre></div></div>
+
+<h1 id="cleaning-data">Cleaning Data</h1>
+
+<p>When looking at a data set, check to see what data needs to be cleaned. Examples include:</p>
+<ul>
+  <li>Missing Data Points</li>
+  <li>Invalid Data</li>
+  <li>Inaccurate Data</li>
+</ul>
+
+<p>Run the following code to see what needs to be cleaned</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Read the JSON file and convert it to a Pandas DataFrame 
+# pd.read_json:  a method that reads a JSON and converts it to a DataFrame (df)
+# df: a variable that holds the DataFrame
+</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_json</span><span class="p">(</span><span class="s">'data/grade.json'</span><span class="p">)</span>
+
+<span class="c1"># Print the DataFrame
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="c1"># Additional print statements to understand the DataFrame:
+# print(df.info()) # prints a summary of the DataFrame, simmilar to database schema
+# print(df.describe()) # prints statistics of the DataFrame
+# print(df.head()) # prints the first 5 rows of the DataFrame
+# print(df.tail()) # prints the last 5 rows of the DataFrame
+# print(df.columns) # prints the columns of the DataFrame
+# print(df.index) # prints the index of the DataFrame
+</span>
+<span class="c1"># Questions:
+# What part of the data set needs to be cleaned?
+# From PBL learning, what is a good time to clean data?  
+# Could you hav Garbage in, Garbage out problem if you don't clean the data?
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Student ID Year in School   GPA
+0         123             12  3.57
+1         246             10  4.00
+2         578             12  2.78
+3         469             11  3.45
+4         324         Junior  4.75
+5         313             20  3.33
+6         145             12  2.95
+7         167             10  3.90
+8         235      9th Grade  3.15
+9         nil              9  2.80
+10        469             11  3.45
+11        456             10  2.75
+</code></pre></div></div>
+
+<h1 id="extracting-info">Extracting Info</h1>
+
+<p>Take a look at some features that the Pandas library has that extracts info from the dataset</p>
+
+<h2 id="dataframe-extract-column">DataFrame Extract Column</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#print the values in the points column with column header
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'GPA'</span><span class="p">]])</span>
+
+<span class="k">print</span><span class="p">()</span>
+
+<span class="c1">#try two columns and remove the index from print statement
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[[</span><span class="s">'Student ID'</span><span class="p">,</span><span class="s">'GPA'</span><span class="p">]].</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     GPA
+0   3.57
+1   4.00
+2   2.78
+3   3.45
+4   4.75
+5   3.33
+6   2.95
+7   3.90
+8   3.15
+9   2.80
+10  3.45
+11  2.75
+
+Student ID  GPA
+       123 3.57
+       246 4.00
+       578 2.78
+       469 3.45
+       324 4.75
+       313 3.33
+       145 2.95
+       167 3.90
+       235 3.15
+       nil 2.80
+       469 3.45
+       456 2.75
+</code></pre></div></div>
+
+<h2 id="dataframe-sort">DataFrame Sort</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#sort values
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">'GPA'</span><span class="p">]))</span>
+
+<span class="k">print</span><span class="p">()</span>
+
+<span class="c1">#sort the values in reverse order
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">'GPA'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Student ID Year in School   GPA
+11        456             10  2.75
+2         578             12  2.78
+9         nil              9  2.80
+6         145             12  2.95
+8         235      9th Grade  3.15
+5         313             20  3.33
+10        469             11  3.45
+3         469             11  3.45
+0         123             12  3.57
+7         167             10  3.90
+1         246             10  4.00
+4         324         Junior  4.75
+
+   Student ID Year in School   GPA
+4         324         Junior  4.75
+1         246             10  4.00
+7         167             10  3.90
+0         123             12  3.57
+10        469             11  3.45
+3         469             11  3.45
+5         313             20  3.33
+8         235      9th Grade  3.15
+6         145             12  2.95
+9         nil              9  2.80
+2         578             12  2.78
+11        456             10  2.75
+</code></pre></div></div>
+
+<h2 id="dataframe-selection-or-filter">DataFrame Selection or Filter</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#print only values with a specific criteria 
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">.</span><span class="n">GPA</span> <span class="o">&gt;</span> <span class="mf">3.00</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   Student ID Year in School   GPA
+0         123             12  3.57
+1         246             10  4.00
+3         469             11  3.45
+4         324         Junior  4.75
+5         313             20  3.33
+7         167             10  3.90
+8         235      9th Grade  3.15
+10        469             11  3.45
+</code></pre></div></div>
+
+<h2 id="dataframe-selection-max-and-min">DataFrame Selection Max and Min</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">.</span><span class="n">GPA</span> <span class="o">==</span> <span class="n">df</span><span class="p">.</span><span class="n">GPA</span><span class="p">.</span><span class="nb">max</span><span class="p">()])</span>
+<span class="k">print</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">.</span><span class="n">GPA</span> <span class="o">==</span> <span class="n">df</span><span class="p">.</span><span class="n">GPA</span><span class="p">.</span><span class="nb">min</span><span class="p">()])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  Student ID Year in School   GPA
+4        324         Junior  4.75
+
+   Student ID Year in School   GPA
+11        456             10  2.75
+</code></pre></div></div>
+
+<h1 id="create-your-own-dataframe">Create your own DataFrame</h1>
+
+<p>Using Pandas allows you to create your own DataFrame in Python.</p>
+
+<h2 id="python-dictionary-to-pandas-dataframe">Python Dictionary to Pandas DataFrame</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1">#the data can be stored as a python dictionary
+</span><span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s">"calories"</span><span class="p">:</span> <span class="p">[</span><span class="mi">420</span><span class="p">,</span> <span class="mi">380</span><span class="p">,</span> <span class="mi">390</span><span class="p">],</span>
+  <span class="s">"duration"</span><span class="p">:</span> <span class="p">[</span><span class="mi">50</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">45</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"-------------Dictionary------------------"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+
+<span class="c1">#stores the data in a data frame
+</span><span class="k">print</span><span class="p">(</span><span class="s">"-------------Dict_to_DF------------------"</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"----------Dict_to_DF_labels--------------"</span><span class="p">)</span>
+<span class="c1">#or with the index argument, you can label rows.
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="s">"day1"</span><span class="p">,</span> <span class="s">"day2"</span><span class="p">,</span> <span class="s">"day3"</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-------------Dictionary------------------
+{'calories': [420, 380, 390], 'duration': [50, 40, 45]}
+-------------Dict_to_DF------------------
+   calories  duration
+0       420        50
+1       380        40
+2       390        45
+----------Dict_to_DF_labels--------------
+      calories  duration
+day1       420        50
+day2       380        40
+day3       390        45
+</code></pre></div></div>
+
+<h2 id="examine-dataframe-rows">Examine DataFrame Rows</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">"-------Examine Selected Rows---------"</span><span class="p">)</span>
+<span class="c1">#use a list for multiple labels:
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[[</span><span class="s">"day1"</span><span class="p">,</span> <span class="s">"day3"</span><span class="p">]])</span>
+
+<span class="c1">#refer to the row index:
+</span><span class="k">print</span><span class="p">(</span><span class="s">"--------Examine Single Row-----------"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="s">"day1"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>-------Examine Selected Rows---------
+      calories  duration
+day1       420        50
+day3       390        45
+--------Examine Single Row-----------
+calories    420
+duration     50
+Name: day1, dtype: int64
+</code></pre></div></div>
+
+<h2 id="pandas-dataframe-information">Pandas DataFrame Information</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#print info about the data set
+</span><span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">info</span><span class="p">())</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+Index: 3 entries, day1 to day3
+Data columns (total 2 columns):
+ #   Column    Non-Null Count  Dtype
+---  ------    --------------  -----
+ 0   calories  3 non-null      int64
+ 1   duration  3 non-null      int64
+dtypes: int64(2)
+memory usage: 180.0+ bytes
+None
+</code></pre></div></div>
+
+<h1 id="example-of-larger-data-set">Example of larger data set</h1>
+
+<p>Pandas can read CSV and many other types of files, run the following code to see more features with a larger data set</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1">#read csv and sort 'Duration' largest to smallest
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'data/data.csv'</span><span class="p">).</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s">'Duration'</span><span class="p">],</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"--Duration Top 10---------"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"--Duration Bottom 10------"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>--Duration Top 10---------
+     Duration  Pulse  Maxpulse  Calories
+69        300    108       143    1500.2
+79        270    100       131    1729.0
+109       210    137       184    1860.4
+60        210    108       160    1376.0
+106       180     90       120     800.3
+90        180    101       127     600.1
+65        180     90       130     800.4
+61        160    110       137    1034.4
+62        160    109       135     853.0
+67        150    107       130     816.0
+--Duration Bottom 10------
+     Duration  Pulse  Maxpulse  Calories
+68         20    106       136     110.4
+100        20     95       112      77.7
+89         20     83       107      50.3
+135        20    136       156     189.0
+94         20    150       171     127.4
+95         20    151       168     229.4
+139        20    141       162     222.4
+64         20    110       130     131.4
+112        15    124       139     124.2
+93         15     80       100      50.5
+</code></pre></div></div>
+
+<h1 id="apis-are-a-source-for-panda-data">APIs are a Source for Panda Data</h1>
+<blockquote>
+  <p>3rd Party APIs are a great source for creating Pandas Data Frames.</p>
+  <ul>
+    <li>Data can be fetched and resulting json can be placed into a Data Frame</li>
+    <li>Observe output, this looks very similar to a Database</li>
+  </ul>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">fetch</span><span class="p">():</span>
+    <span class="s">'''Obtain data from an endpoint'''</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://devops.nighthawkcodingsociety.com/api/users/"</span>
+    <span class="n">fetch</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">json</span> <span class="o">=</span> <span class="n">fetch</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># filter data for requirement
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+ 
+    <span class="c1"># Check if 'active_classes' column exists in the DataFrame
+</span>    <span class="k">if</span> <span class="s">'active_classes'</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="c1"># Split the 'active_classes' strings into lists of class names and expand the lists into separate rows
+</span>        <span class="n">classes_series</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'active_classes'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">).</span><span class="n">explode</span><span class="p">()</span>
+
+        <span class="c1"># Count the unique class names and print the counts
+</span>        <span class="k">print</span><span class="p">(</span><span class="n">classes_series</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="n">strip</span><span class="p">().</span><span class="n">value_counts</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Column 'active_classes' does not exist in the DataFrame"</span><span class="p">)</span>
+
+<span class="n">fetch</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>active_classes
+APCSP    160
+APCSA     62
+CSSE      60
+          20
+Name: count, dtype: int64
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="k">def</span> <span class="nf">fetch</span><span class="p">():</span>
+    <span class="s">'''Obtain data from an endpoint'''</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">"https://devops.nighthawkcodingsociety.com/api/users/"</span>
+    <span class="n">fetch</span> <span class="o">=</span> <span class="n">requests</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+    <span class="n">json</span> <span class="o">=</span> <span class="n">fetch</span><span class="p">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="c1"># filter data for requirement
+</span>    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">json</span><span class="p">)</span>
+    
+    <span class="c1"># Check if 'active_classes' column exists in the DataFrame
+</span>    <span class="k">if</span> <span class="s">'active_classes'</span> <span class="ow">in</span> <span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">:</span>
+        <span class="c1"># Split the 'active_classes' strings into lists of class names
+</span>        <span class="n">df</span><span class="p">[</span><span class="s">'active_classes'</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">'active_classes'</span><span class="p">].</span><span class="nb">str</span><span class="p">.</span><span class="n">split</span><span class="p">(</span><span class="s">','</span><span class="p">)</span>
+
+        <span class="c1"># Get a list of unique class names by using a set comprehension
+</span>        <span class="n">unique_classes</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">([</span><span class="n">unique_class</span><span class="p">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">class_list</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s">'active_classes'</span><span class="p">]</span> <span class="k">for</span> <span class="n">unique_class</span> <span class="ow">in</span> <span class="n">class_list</span><span class="p">]).</span><span class="n">unique</span><span class="p">()</span>
+                                    
+        <span class="c1"># Iterate over the each class name
+</span>        <span class="k">for</span> <span class="n">current_class</span> <span class="ow">in</span> <span class="n">unique_classes</span><span class="p">:</span>
+            <span class="c1"># Filter the DataFrame for students in the current class using a lambda function
+</span>            <span class="n">class_df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s">'active_classes'</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">classes</span><span class="p">:</span> <span class="n">current_class</span> <span class="ow">in</span> <span class="n">classes</span><span class="p">)]</span>
+
+            <span class="c1"># Select the desired data frame column
+</span>            <span class="n">students</span> <span class="o">=</span> <span class="n">class_df</span><span class="p">[[</span><span class="s">'active_classes'</span><span class="p">,</span><span class="s">'id'</span><span class="p">,</span> <span class="s">'first_name'</span><span class="p">,</span> <span class="s">'last_name'</span><span class="p">]]</span>
+
+            <span class="c1"># Print the list of students in the current class
+</span>            <span class="k">print</span><span class="p">(</span><span class="n">students</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">'last_name'</span><span class="p">).</span><span class="n">head</span><span class="p">())</span> <span class="c1"># avoids jupyter notebook truncation, remove .head() to print all students
+</span>            <span class="k">print</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Column 'active_classes' does not exist in the DataFrame"</span><span class="p">)</span>
+
+<span class="n">fetch</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    active_classes   id first_name last_name
+60         [APCSA]   86     Aditya          
+33         [APCSA]   55       Finn          
+30         [APCSA]   52    [Edwin]   Abraham
+247        [APCSA]  316   [Vishnu]   Aravind
+117        [APCSA]  161  [Anthony]  Bazhenov
+
+    active_classes   id first_name last_name
+298        [APCSP]  369       Test          
+94         [APCSP]  134      Cindy          
+296        [APCSP]  367   testUser          
+12         [APCSP]   29     Saaras          
+150        [APCSP]  199      Gavin          
+
+    active_classes   id           first_name last_name
+263             []  334                 Pele          
+254             []  325                 Pele          
+161             []  212              Varnika          
+193             []  246       [Alyssa-Allen]    Abrams
+258             []  329  [Alexander, Graham]      Bell
+
+    active_classes   id first_name   last_name
+286         [CSSE]  357     Amelia            
+205         [CSSE]  260    Gabriel            
+265         [CSSE]  336     Yoseph            
+211         [CSSE]  267      Timur            
+91          [CSSE]  130   [Maryam]  Abdul-Aziz
+</code></pre></div></div>
+
+<h1 id="hacks">Hacks</h1>
+<blockquote>
+  <p>Early Seed award.  Don’t tell anyone. Show to Teacher.</p>
+  <ul>
+    <li>Add this Blog to you own Blogging site.</li>
+    <li>Have all lecture files saved to your files directory before Tech Talk starts.</li>
+    <li>Add this Blog to you own Blogging site.  In the Blog add notes and observations on each code cell.</li>
+  </ul>
+</blockquote>
+
+<blockquote>
+  <p>The next 6 weeks, the Teachers want you to improve your understanding of data structures and data science.  Your intention is to find some things to differentiate your individual College Board project, particularly if your project looks like all other projects.</p>
+  <ul>
+    <li>Look at this blog and others on data structures for todays date.</li>
+    <li>Create or Find your own dataset.  The suggestion is to use a JSON file, integrating with your CPT/PBL project would be <strong><em>Amazing</em></strong>.</li>
+    <li>Build frontend to backend to filter or use your data set in your CPT/PBL.</li>
+    <li>When choosing a data set, think about the following…
+      <ul>
+        <li>Does it have a good sample size?</li>
+        <li>Is there bias in the data?</li>
+        <li>Does the data set need to be cleaned?</li>
+        <li>What is the purpose of the data set?</li>
+        <li>…</li>
+      </ul>
+    </li>
+  </ul>
+</blockquote>
+
+  </div><a class="u-url" href="/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro1_IPYNB_2_.html" hidden></a>
+</article>
+
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/mirabellea_2025/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://localhost:4100/mirabellea_2025/feed.xml">
+            <svg class="svg-icon orange">
+              <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
+                11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
+                13.806c0-1.21.983-2.195 2.194-2.195zM10.606
+                16h-3.11c0-4.113-3.383-7.497-7.496-7.497v-3.11c5.818 0 10.606 4.79 10.606 10.607z"
+              />
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Class of 2025</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+</html>

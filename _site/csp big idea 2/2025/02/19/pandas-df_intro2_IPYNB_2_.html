@@ -1,0 +1,1089 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Data Frames Pandas Intro 2 | Nighthawk Pages</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Data Frames Pandas Intro 2" />
+<meta name="author" content="Vardaan Sinha" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="This blog contains basic techniques for analyzing a dataset using the Python Pandas module. Python is a primary language for data science and is useful for backend operations like analyzing and storing data." />
+<meta property="og:description" content="This blog contains basic techniques for analyzing a dataset using the Python Pandas module. Python is a primary language for data science and is useful for backend operations like analyzing and storing data." />
+<link rel="canonical" href="http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro2_IPYNB_2_.html" />
+<meta property="og:url" content="http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro2_IPYNB_2_.html" />
+<meta property="og:site_name" content="Nighthawk Pages" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2025-02-19T00:00:00-08:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Data Frames Pandas Intro 2" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Vardaan Sinha"},"dateModified":"2025-02-19T00:00:00-08:00","datePublished":"2025-02-19T00:00:00-08:00","description":"This blog contains basic techniques for analyzing a dataset using the Python Pandas module. Python is a primary language for data science and is useful for backend operations like analyzing and storing data.","headline":"Data Frames Pandas Intro 2","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro2_IPYNB_2_.html"},"url":"http://localhost:4100/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro2_IPYNB_2_.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@latest/css/all.min.css">
+  <link rel="stylesheet" href="/mirabellea_2025/assets/css/style.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4100/mirabellea_2025/feed.xml" title="Nighthawk Pages" />
+
+<!-- Include favicons --><link rel="shortcut icon" type="image/x-icon" href="/mirabellea_2025/images/favicon.ico"><!-- Include Primer CSS for styling -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Primer/15.2.0/primer.css" integrity="sha512-xTz2ys4coGAOz8vuV1NcQBkgVmKhsSEtjbqyMJbBHRplFuvKIUo6xhLHpAyPt9mfR6twHJgn9OgVLuqOvjeBhg==" crossorigin="anonymous" />
+
+<!-- Include Font Awesome for icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+
+<!-- Include Hypothesis annotations script if annotations are enabled --><!-- Include KaTeX and MathJax for rendering mathematical expressions if use_math is enabled -->
+
+
+<script>
+/**
+ * Function to wrap images with a figure and caption if they have a title attribute.
+ * This function is executed when the window loads.
+ */
+function wrap_img(fn) {
+    // Check if the document is already loaded
+    if (document.attachEvent ? document.readyState === "complete" : document.readyState !== "loading") {
+        // Select all images within elements with the class 'post'
+        var elements = document.querySelectorAll(".post img");
+        // Iterate over each image element
+        Array.prototype.forEach.call(elements, function(el, i) {
+            // Check if the image has a title attribute and is not an emoji
+            if (el.getAttribute("title") && (el.className != "emoji")) {
+                // Create a figcaption element for the caption
+                const caption = document.createElement('figcaption');
+                // Create a text node with the title attribute value
+                var node = document.createTextNode(el.getAttribute("title"));
+                // Append the text node to the figcaption element
+                caption.appendChild(node);
+                // Create a figure element to wrap the image and caption
+                const wrapper = document.createElement('figure');
+                // Add the 'image' class to the figure element
+                wrapper.className = 'image';
+                // Insert the figure element before the image
+                el.parentNode.insertBefore(wrapper, el);
+                // Remove the image from its original position
+                el.parentNode.removeChild(el);
+                // Append the image and caption to the figure element
+                wrapper.appendChild(el);
+                wrapper.appendChild(caption);
+            }
+        });
+    } else {
+        // If the document is not loaded, add an event listener to execute the function when it is
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+}
+// Execute the wrap_img function when the window loads
+window.onload = wrap_img;
+</script>
+
+<script>
+/**
+ * Function to add a link icon to anchor tags with the class 'anchor-link'.
+ * This function is executed when the DOM content is loaded.
+ */
+document.addEventListener("DOMContentLoaded", function(){
+    // Select all elements with the class 'anchor-link'
+    var elem = document.querySelectorAll(".anchor-link");
+    // Iterate over each element and set its inner HTML to a Font Awesome link icon
+    elem.forEach(e => (e.innerHTML = '<i class="fas fa-link fa-xs"></i>'));
+});
+</script>
+</head>
+<body><header class="site-header">
+
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/mirabellea_2025/">Nighthawk Pages</a>
+      <nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon fas fa-bars fa-lg"></span>
+        </label>
+
+        <div class="drawer-container">
+          <div class="drawer">
+  <a class="nav-item" href="/mirabellea_2025/blogs/">Blogs</a>
+  <a class="nav-item" href="/mirabellea_2025/search/">Search</a>
+  <a class="nav-item" href="/mirabellea_2025/about/">About Mirabelle</a>
+  <a class="nav-item" href="/mirabellea_2025/README4YML.html">Readme</a>
+          </div>
+        </div>
+        <div class="slab">
+  <a class="nav-item" href="/mirabellea_2025/blogs/">Blogs</a>
+  <a class="nav-item" href="/mirabellea_2025/search/">Search</a>
+  <a class="nav-item" href="/mirabellea_2025/about/">About Mirabelle</a>
+  <a class="nav-item" href="/mirabellea_2025/README4YML.html">Readme</a>
+        </div>
+      </nav>
+  </div>
+</header>
+<main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header"><h1 class="post-title p-name" itemprop="name headline">Data Frames | Pandas | Intro 2</h1><p class="page-description">This blog contains basic techniques for analyzing a dataset using the Python Pandas module.  Python is a primary language for data science and is useful for backend operations like analyzing and storing data.</p><p class="post-meta post-meta-title"><time class="dt-published" datetime="2025-02-19T00:00:00-08:00" itemprop="datePublished">
+        Feb 19, 2025
+      </time>• 
+          <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+            <span class="p-author h-card" itemprop="name">Vardaan Sinha</span></span>• <span class="read-time" title="Estimated read time">
+    
+    
+      9 min read
+    
+</span>
+    </p>
+
+    
+      <p class="category-tags"><i class="fas fa-tags category-tags-icon"></i></i> 
+      
+          <a class="category-tags-link" href="/mirabellea_2025/categories/cte#CSP Big Idea 2">CSP Big Idea 2</a>
+        
+        
+      
+      </p>
+    
+
+    </header>
+
+  <div class="post-content e-content" itemprop="articleBody"><h1 id="an-introduction">An Introduction</h1>
+
+<p>Interacting with data is something we do everyday, whether consciously or subconsciously.</p>
+
+<p>If you are interested into going into any field of STEM - whether it be the medical field, data science, or computer science, you will often be working with <em>large</em> datasets with tons of useful AND useless information.</p>
+
+<p>A skillset that is becoming increasingly important in these areas of work is the ability to effectively query and filter for data in large datasets and draw conclusions based on these filters.</p>
+
+<h1 id="pandas">Pandas</h1>
+
+<p>Pandas is a Python library that allows for the manipulation, querying, and filtering of data.</p>
+
+<p>Over time, it has become one of the most popular Python libraries for data analysis.</p>
+
+<p>Here is the documentation link: https://pandas.pydata.org/docs/</p>
+
+<h1 id="our-data">Our Data</h1>
+
+<p>Data is readable in many formats. As someone who is working with datasets, you should be able to recognize what formats are easiest to understand for you and for any program that you write. Here are two of the most common data formats:</p>
+
+<ol>
+  <li>
+    <p><strong>JSON</strong>: This is a standard file format that is very easy for humans and computers to read and write. It is a compact way to store data.</p>
+  </li>
+  <li>
+    <p><strong>CSV</strong>: These are <em>comma-separated value</em> files. This is where data has comma delimiters (separaters).</p>
+  </li>
+</ol>
+
+<p>For the purpose of this notebook, we’ll use a <strong>JSON file</strong> containing data about the average income level in each of the 50 states in the USA (located in /assets/datasets/income.json)</p>
+
+<p>We will look to first understand and interpret the data ourselves and use Pandas and Numpy to provide insightful statistical information about the dataset that we may not be as easy to find by ourselves.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># uncomment the following line to install the pandas library
+# !pip install pandas 
+</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span> 
+
+<span class="c1"># Use wget to obtain file, be sure to to place in _notebooks/files 
+# wget https://raw.githubusercontent.com/nighthawkcoders/teacher_portfolio/main/_notebooks/files/income.json
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">read_json</span><span class="p">(</span><span class="s">'data/income.json'</span><span class="p">)</span>
+
+<span class="c1"># Add a new column that is the mean household income in dollars
+</span><span class="n">df</span><span class="p">[</span><span class="s">"MeanHouseholdIncomeDollars"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">"MeanHouseholdIncome"</span><span class="p">].</span><span class="nb">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="s">"${:,.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+
+<span class="c1"># display is alternative to print
+# ... it is a part of Jupyter Notebooks
+# ... it shows the dataframe as a nice table
+</span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>---------------------------------------------------------------------------
+
+FileNotFoundError                         Traceback (most recent call last)
+
+Cell In[1], line 8
+      4 import pandas as pd 
+      6 # Use wget to obtain file, be sure to to place in _notebooks/files 
+      7 # wget https://raw.githubusercontent.com/nighthawkcoders/teacher_portfolio/main/_notebooks/files/income.json
+----&gt; 8 df = pd.read_json('data/income.json')
+     10 # Add a new column that is the mean household income in dollars
+     11 df["MeanHouseholdIncomeDollars"] = df["MeanHouseholdIncome"].apply(lambda n: "${:,.2f}".format(n))
+
+
+File ~/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages/pandas/io/json/_json.py:791, in read_json(path_or_buf, orient, typ, dtype, convert_axes, convert_dates, keep_default_dates, precise_float, date_unit, encoding, encoding_errors, lines, chunksize, compression, nrows, storage_options, dtype_backend, engine)
+    788 if convert_axes is None and orient != "table":
+    789     convert_axes = True
+--&gt; 791 json_reader = JsonReader(
+    792     path_or_buf,
+    793     orient=orient,
+    794     typ=typ,
+    795     dtype=dtype,
+    796     convert_axes=convert_axes,
+    797     convert_dates=convert_dates,
+    798     keep_default_dates=keep_default_dates,
+    799     precise_float=precise_float,
+    800     date_unit=date_unit,
+    801     encoding=encoding,
+    802     lines=lines,
+    803     chunksize=chunksize,
+    804     compression=compression,
+    805     nrows=nrows,
+    806     storage_options=storage_options,
+    807     encoding_errors=encoding_errors,
+    808     dtype_backend=dtype_backend,
+    809     engine=engine,
+    810 )
+    812 if chunksize:
+    813     return json_reader
+
+
+File ~/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages/pandas/io/json/_json.py:904, in JsonReader.__init__(self, filepath_or_buffer, orient, typ, dtype, convert_axes, convert_dates, keep_default_dates, precise_float, date_unit, encoding, lines, chunksize, compression, nrows, storage_options, encoding_errors, dtype_backend, engine)
+    902     self.data = filepath_or_buffer
+    903 elif self.engine == "ujson":
+--&gt; 904     data = self._get_data_from_filepath(filepath_or_buffer)
+    905     self.data = self._preprocess_data(data)
+
+
+File ~/nighthawk/mirabellea_2025/venv/lib/python3.12/site-packages/pandas/io/json/_json.py:960, in JsonReader._get_data_from_filepath(self, filepath_or_buffer)
+    952     filepath_or_buffer = self.handles.handle
+    953 elif (
+    954     isinstance(filepath_or_buffer, str)
+    955     and filepath_or_buffer.lower().endswith(
+   (...)    958     and not file_exists(filepath_or_buffer)
+    959 ):
+--&gt; 960     raise FileNotFoundError(f"File {filepath_or_buffer} does not exist")
+    961 else:
+    962     warnings.warn(
+    963         "Passing literal json to 'read_json' is deprecated and "
+    964         "will be removed in a future version. To read from a "
+   (...)    967         stacklevel=find_stack_level(),
+    968     )
+
+
+FileNotFoundError: File data/income.json does not exist
+</code></pre></div></div>
+
+<h2 id="dataset-statistics">Dataset statistics</h2>
+<blockquote>
+  <p>Let’s find and display some statistics from the dataset..
+The dataframe is being described from the information for the column where applicable statistics are present.</p>
+</blockquote>
+
+<ul>
+  <li>The “count” statistic for example, is the number of not-empty cells in the mean household income column.</li>
+  <li>The mean is the average mean household income across all 50 states</li>
+  <li>The standard deviation is how much the values within the mean household income column deviate from the mean.</li>
+</ul>
+
+<p>It is important to note that in many more complex datasets, there will be multiple columns with explanatory data. In those cases, the df.describe() method will need to be specified based on a specific column.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use built in stats
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Statistical Summary of the Data"</span><span class="p">)</span>
+<span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Define a specific value from the dataframe
+# ... using the "mean" method (finds average) from the dataframen
+# ... in the [] brackets is a dataframe label describing what is to be computed
+</span><span class="n">dfmean</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s">"MeanHouseholdIncome"</span><span class="p">].</span><span class="n">mean</span><span class="p">()</span>
+
+<span class="c1"># Format the mean household income
+# ... allows it to be formatted into a message
+# ... so that there is a dollar sign and commas in the number
+</span><span class="k">print</span><span class="p">(</span><span class="s">"USA Mean Household Income: ${:,.2f}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">dfmean</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Statistical Summary of the Data
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MeanHouseholdIncome</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>50.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>87461.460000</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>13945.982845</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>65156.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>77532.250000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>83675.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>96389.250000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>117868.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>USA Mean Household Income: $87,461.46
+</code></pre></div></div>
+
+<h3 id="dataframe-sort-household-income">Dataframe sort, Household Income</h3>
+<blockquote>
+  <p>In this example, analytical data is sorted.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Format the "MeanHouseholdIncome" column with commas as thousands separators and a dollar sign
+</span>
+<span class="c1"># Sort the DataFrame by the "MeanHouseholdIncome" column
+# ... in ascending order
+# ... purpose is to find best paying states
+# ... note, calculation are on unformatted numbers
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">"MeanHouseholdIncome"</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+
+<span class="c1"># Print the DataFrame
+# ... the display only the nicely formatted numbers
+</span><span class="n">display</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="n">difference</span><span class="p">([</span><span class="s">'MeanHouseholdIncome'</span><span class="p">])])</span> 
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MeanHouseholdIncomeDollars</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>29</th>
+      <td>$117,868.00</td>
+      <td>New Jersey</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>$115,964.00</td>
+      <td>Massachusetts</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>$115,337.00</td>
+      <td>Connecticut</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>$114,236.00</td>
+      <td>Maryland</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>$111,622.00</td>
+      <td>California</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>$107,348.00</td>
+      <td>Hawaii</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>$106,023.00</td>
+      <td>Virginia</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>$105,304.00</td>
+      <td>New York</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>$103,669.00</td>
+      <td>Washington</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>$101,292.00</td>
+      <td>New Hampshire</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>$100,933.00</td>
+      <td>Colorado</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>$98,811.00</td>
+      <td>Alaska</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>$96,814.00</td>
+      <td>Minnesota</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>$95,115.00</td>
+      <td>Illinois</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>$94,452.00</td>
+      <td>Utah</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>$92,427.00</td>
+      <td>Rhode Island</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>$92,308.00</td>
+      <td>Delaware</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>$89,506.00</td>
+      <td>Texas</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>$88,137.00</td>
+      <td>Oregon</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>$87,262.00</td>
+      <td>Pennsylvania</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>$85,961.00</td>
+      <td>Georgia</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>$85,506.00</td>
+      <td>North Dakota</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>$84,380.00</td>
+      <td>Arizona</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>$84,350.00</td>
+      <td>Nevada</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>$83,767.00</td>
+      <td>Vermont</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>$83,583.00</td>
+      <td>Wyoming</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>$83,104.00</td>
+      <td>Florida</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>$82,757.00</td>
+      <td>Wisconsin</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>$82,306.00</td>
+      <td>Nebraska</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>$82,103.00</td>
+      <td>Kansas</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>$80,803.00</td>
+      <td>Michigan</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>$80,316.00</td>
+      <td>Iowa</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>$79,620.00</td>
+      <td>North Carolina</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>$78,796.00</td>
+      <td>Ohio</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>$78,301.00</td>
+      <td>Maine</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>$78,194.00</td>
+      <td>Missouri</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>$77,932.00</td>
+      <td>South Dakota</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>$77,399.00</td>
+      <td>Idaho</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>$76,984.00</td>
+      <td>Indiana</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>$76,937.00</td>
+      <td>Tennessee</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>$76,834.00</td>
+      <td>Montana</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>$76,390.00</td>
+      <td>South Carolina</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>$74,195.00</td>
+      <td>Oklahoma</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>$73,759.00</td>
+      <td>Louisiana</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>$72,318.00</td>
+      <td>Kentucky</td>
+    </tr>
+    <tr>
+      <th>0</th>
+      <td>$71,964.00</td>
+      <td>Alabama</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>$70,241.00</td>
+      <td>New Mexico</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>$69,357.00</td>
+      <td>Arkansas</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>$65,332.00</td>
+      <td>West Virginia</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>$65,156.00</td>
+      <td>Mississippi</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h3 id="dataframe-sort-state">Dataframe sort, State</h3>
+<blockquote>
+  <p>In this example, categorical can be sorted.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df</span><span class="p">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s">"State"</span><span class="p">)</span>
+
+<span class="c1"># The data is sorted alphabetically based on the "State" column.
+</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>State</th>
+      <th>MeanHouseholdIncome</th>
+      <th>MeanHouseholdIncomeDollars</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Alabama</td>
+      <td>71964</td>
+      <td>$71,964.00</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Alaska</td>
+      <td>98811</td>
+      <td>$98,811.00</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Arizona</td>
+      <td>84380</td>
+      <td>$84,380.00</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Arkansas</td>
+      <td>69357</td>
+      <td>$69,357.00</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>California</td>
+      <td>111622</td>
+      <td>$111,622.00</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>Colorado</td>
+      <td>100933</td>
+      <td>$100,933.00</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>Connecticut</td>
+      <td>115337</td>
+      <td>$115,337.00</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>Delaware</td>
+      <td>92308</td>
+      <td>$92,308.00</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>Florida</td>
+      <td>83104</td>
+      <td>$83,104.00</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>Georgia</td>
+      <td>85961</td>
+      <td>$85,961.00</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>Hawaii</td>
+      <td>107348</td>
+      <td>$107,348.00</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>Idaho</td>
+      <td>77399</td>
+      <td>$77,399.00</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>Illinois</td>
+      <td>95115</td>
+      <td>$95,115.00</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>Indiana</td>
+      <td>76984</td>
+      <td>$76,984.00</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>Iowa</td>
+      <td>80316</td>
+      <td>$80,316.00</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>Kansas</td>
+      <td>82103</td>
+      <td>$82,103.00</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>Kentucky</td>
+      <td>72318</td>
+      <td>$72,318.00</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>Louisiana</td>
+      <td>73759</td>
+      <td>$73,759.00</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>Maine</td>
+      <td>78301</td>
+      <td>$78,301.00</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>Maryland</td>
+      <td>114236</td>
+      <td>$114,236.00</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>Massachusetts</td>
+      <td>115964</td>
+      <td>$115,964.00</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>Michigan</td>
+      <td>80803</td>
+      <td>$80,803.00</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>Minnesota</td>
+      <td>96814</td>
+      <td>$96,814.00</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>Mississippi</td>
+      <td>65156</td>
+      <td>$65,156.00</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>Missouri</td>
+      <td>78194</td>
+      <td>$78,194.00</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>Montana</td>
+      <td>76834</td>
+      <td>$76,834.00</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>Nebraska</td>
+      <td>82306</td>
+      <td>$82,306.00</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>Nevada</td>
+      <td>84350</td>
+      <td>$84,350.00</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>New Hampshire</td>
+      <td>101292</td>
+      <td>$101,292.00</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>New Jersey</td>
+      <td>117868</td>
+      <td>$117,868.00</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>New Mexico</td>
+      <td>70241</td>
+      <td>$70,241.00</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>New York</td>
+      <td>105304</td>
+      <td>$105,304.00</td>
+    </tr>
+    <tr>
+      <th>32</th>
+      <td>North Carolina</td>
+      <td>79620</td>
+      <td>$79,620.00</td>
+    </tr>
+    <tr>
+      <th>33</th>
+      <td>North Dakota</td>
+      <td>85506</td>
+      <td>$85,506.00</td>
+    </tr>
+    <tr>
+      <th>34</th>
+      <td>Ohio</td>
+      <td>78796</td>
+      <td>$78,796.00</td>
+    </tr>
+    <tr>
+      <th>35</th>
+      <td>Oklahoma</td>
+      <td>74195</td>
+      <td>$74,195.00</td>
+    </tr>
+    <tr>
+      <th>36</th>
+      <td>Oregon</td>
+      <td>88137</td>
+      <td>$88,137.00</td>
+    </tr>
+    <tr>
+      <th>37</th>
+      <td>Pennsylvania</td>
+      <td>87262</td>
+      <td>$87,262.00</td>
+    </tr>
+    <tr>
+      <th>38</th>
+      <td>Rhode Island</td>
+      <td>92427</td>
+      <td>$92,427.00</td>
+    </tr>
+    <tr>
+      <th>39</th>
+      <td>South Carolina</td>
+      <td>76390</td>
+      <td>$76,390.00</td>
+    </tr>
+    <tr>
+      <th>40</th>
+      <td>South Dakota</td>
+      <td>77932</td>
+      <td>$77,932.00</td>
+    </tr>
+    <tr>
+      <th>41</th>
+      <td>Tennessee</td>
+      <td>76937</td>
+      <td>$76,937.00</td>
+    </tr>
+    <tr>
+      <th>42</th>
+      <td>Texas</td>
+      <td>89506</td>
+      <td>$89,506.00</td>
+    </tr>
+    <tr>
+      <th>43</th>
+      <td>Utah</td>
+      <td>94452</td>
+      <td>$94,452.00</td>
+    </tr>
+    <tr>
+      <th>44</th>
+      <td>Vermont</td>
+      <td>83767</td>
+      <td>$83,767.00</td>
+    </tr>
+    <tr>
+      <th>45</th>
+      <td>Virginia</td>
+      <td>106023</td>
+      <td>$106,023.00</td>
+    </tr>
+    <tr>
+      <th>46</th>
+      <td>Washington</td>
+      <td>103669</td>
+      <td>$103,669.00</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>West Virginia</td>
+      <td>65332</td>
+      <td>$65,332.00</td>
+    </tr>
+    <tr>
+      <th>48</th>
+      <td>Wisconsin</td>
+      <td>82757</td>
+      <td>$82,757.00</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>Wyoming</td>
+      <td>83583</td>
+      <td>$83,583.00</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>What are the key takeaways from this lesson?</p>
+
+<p>The purpose is to obtain a basic understanding of working with a dataset, using Pandas dataframes. To obtain a more comprehensive understanding of Pandas capabilities, research operations such as filtering data based on certain criteria, grouping data, or performing calculations on multiple columns.  Additional work can be done with these Python modules (ie numpy, matplotlib).</p>
+
+<p>Explain each example briefly and provide a real-world scenario where such an operation would be useful.  Every dataset that you work with should have a purpose - that’s what the field of data science is all about.</p>
+
+<p>For instance, in the Household income example, we analyzed a mean household income by state dataset. This could be applicable if someone wanted to find out where the most affordable place to live.</p>
+
+<ul>
+  <li>Find the minimum household income</li>
+  <li>Expand data to look at affordability of areas within state</li>
+  <li>Perhaps add other factors like employment in those areas</li>
+</ul>
+
+<h2 id="additional-resources">Additional Resources</h2>
+<ol>
+  <li><a href="https://pandas.pydata.org/docs/">Pandas Documentation</a>
+    <ul>
+      <li>This is an essential resource for learning about Pandas and its various functionalities. It provides detailed documentation, examples, and explanations of different methods and operations.</li>
+    </ul>
+  </li>
+  <li><a href="https://www.geeksforgeeks.org/major-applications-of-data-science/">Data Science Applications</a>
+    <ul>
+      <li>This resource provides an overview of major applications of data science across various domains. It can help students understand the practical implications of data analysis and how it is used in different industries.</li>
+    </ul>
+  </li>
+  <li><a href="https://www.kaggle.com/datasets">Kaggle Datasets</a>
+    <ul>
+      <li>Kaggle is a popular platform for data science and machine learning. It offers a wide range of datasets for practice and exploration. Students can find interesting datasets on different topics to apply their Pandas learning and gain hands-on experience.</li>
+    </ul>
+  </li>
+  <li><a href="https://numpy.org/doc/">NumPy Documentation</a>
+    <ul>
+      <li>NumPy is another important Python library often used in conjunction with Pandas for numerical operations and scientific computing. The official NumPy documentation provides in-depth explanations and examples of working with arrays, mathematical functions, and more.</li>
+    </ul>
+  </li>
+  <li><a href="https://matplotlib.org/stable/contents.html">Matplotlib Documentation</a>
+    <ul>
+      <li>Matplotlib is a powerful data visualization library in Python. It allows students to create a wide range of plots and charts to visualize their data. The Matplotlib documentation offers comprehensive guidance on creating different types of visualizations, customizing plots, and using various plotting functions.
+By referring to these resources, students can further expand their knowledge and explore advanced topics in Pandas, NumPy, and data visualization.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="hacks">Hacks</h2>
+
+<ol>
+  <li>
+    <p>Find a CSV/JSON Dataset that interests you. Refer to Kaggle Datasets mentioned above.</p>
+  </li>
+  <li>
+    <p>Try to show your Pandas learning by illustrating <strong>5</strong> different numerical analysis operations being done on the dataset. After showing each operation in a separate code block, add a sentence explaining what that operation is showing and what real-world implication it has. It is important to make sure that you are not only able to run code to analyze data, but also understand its implications.</p>
+  </li>
+  <li>
+    <p>EXTRA: Research Matplotlib Documentation mentioned and implement a code block where you create a graph showing and visualize relationship in your chosen dataset. Then, add a sentence or two explaining what the relationship shows.</p>
+  </li>
+</ol>
+
+  </div><a class="u-url" href="/mirabellea_2025/csp%20big%20idea%202/2025/02/19/pandas-df_intro2_IPYNB_2_.html" hidden></a>
+</article>
+
+    </div>
+  </main><footer class="site-footer h-card">
+  <data class="u-url" href="/mirabellea_2025/"></data>
+
+  <div class="wrapper">
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col">
+        <p class="feed-subscribe">
+          <a href="http://localhost:4100/mirabellea_2025/feed.xml">
+            <svg class="svg-icon orange">
+              <path d="M12.8 16C12.8 8.978 7.022 3.2 0 3.2V0c8.777 0 16 7.223 16 16h-3.2zM2.194
+                11.61c1.21 0 2.195.985 2.195 2.196 0 1.21-.99 2.194-2.2 2.194C.98 16 0 15.017 0
+                13.806c0-1.21.983-2.195 2.194-2.195zM10.606
+                16h-3.11c0-4.113-3.383-7.497-7.496-7.497v-3.11c5.818 0 10.606 4.79 10.606 10.607z"
+              />
+            </svg><span>Subscribe</span>
+          </a>
+        </p>
+      </div>
+      <div class="footer-col">
+        <p>Class of 2025</p>
+      </div>
+    </div>
+
+    <div class="social-links"><ul class="social-media-list"></ul>
+</div>
+
+  </div>
+
+</footer>
+</body>
+</html>
